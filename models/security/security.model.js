@@ -30,7 +30,8 @@ class SecurityModel {
         "lastlogin": 0,
         "lastpwdchg": 0,
         "pwdexp": new Date().getTime() + (1000*60*60*24*90), /* mils, s , m, h, d */
-        "oldpwd":[]
+        "oldpwd":[],
+        "roles":["enterprise"]
       }
       let result = await this.collection.insertOne(newUser);
       return result;
@@ -55,7 +56,8 @@ class SecurityModel {
         "lastlogin": 0,
         "lastpwdchg": 0,
         "pwdexp": new Date().getTime() + (1000*60*60*24*90), /* mils, s , m, h, d */
-        "oldpwd":[]
+        "oldpwd":[],
+        "roles":["user"]
       }
       let rslt = await this.collection.insertOne(nuevo);
       return rslt;
