@@ -22,8 +22,10 @@ passport.use(
 
 const jwtAuthMiddleware = passport.authenticate("jwt", { session: false });
 
+const SecurityRoutes = require("./api/security");
 const WorksRoutes = require("./api/works");
 
-router.use("/works", WorksRoutes);
+router.use("/works", jwtAuthMiddleware, WorksRoutes);
+router.use("/security", SecurityRoutes);
 
 module.exports = router;
