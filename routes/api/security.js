@@ -22,24 +22,32 @@ router.post('/login', async(req, res)=>{
         console.log("Contraseña Incorrecta:" + email);
         res.status(401).json({ "error": "No se pueden validar sus credenciales." });
       }
-      
     }
-    
   }catch(ex){
     console.log(ex);
     res.status(500).json({ "msg": "Algo Salió Mal" })
   }
 });
 
-router.post('/signin', async(req, res)=>{
+router.post('/signupuser', async(req, res)=>{
   try{
     let { username, email, name, lastname, password, birthdate, career, photo, achievements} = req.body;
     let rslt = await SecMdl.addUser({username, email, name, lastname, password, birthdate, career, photo, achievements});
+  }catch(ex){
+    console.log(ex);
+    res.status(500).json({"msg":"Algo Salió Mal"})
+  }
+}); 
+
+router.post('/signup', async(req, res)=>{
+  try{
+    let { email, password, name, photo, description, location, website } = req.body;
+    let rslt = await SecMdl.addEnterpriseUser({email, password, email, password, name, photo, description, location, website});
     res.status(200).json(rslt);
   }catch(ex){
     console.log(ex);
     res.status(500).json({"msg":"Algo Salió Mal"})
   }
-}); // post signin
+}); 
 
 module.exports = router;

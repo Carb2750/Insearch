@@ -7,7 +7,10 @@
   },
   "dependencies": {
     "bcrypt": "^5.0.0",
+<<<<<<< HEAD
     "bcrypt-nodejs": "0.0.3",
+=======
+>>>>>>> fb01faa9b3933ef9d815d3c5e2b815e14705eddd
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^8.2.0",
