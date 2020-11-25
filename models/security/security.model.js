@@ -39,6 +39,31 @@ class SecurityModel {
     }
   }
 
+  async addUser( data ) {
+    const {username, email, name, lastname, password, birthdate, career,photo, achievements} = data;
+    try {
+      let nuevo = {
+        "username": username,
+        "email": email,
+        "name": name,
+        "lastname": lastname,
+        "password": bcrypt.hashSync(password, 10),
+        "birthdate": birthdate,
+        "career": career,
+        "photo": photo,
+        "achievements": achievements,
+        "lastlogin": 0,
+        "lastpwdchg": 0,
+        "pwdexp": new Date().getTime() + (1000*60*60*24*90), /* mils, s , m, h, d */
+        "oldpwd":[]
+      }
+      let rslt = await this.collection.insertOne(nuevo);
+      return rslt;
+    } catch(ex){
+      throw(ex);
+    }
+  }
+
   async getUserByEmail(email){
     try{
       const filter = {"email":email};
