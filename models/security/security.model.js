@@ -35,8 +35,8 @@ class SecurityModel {
       }
       let result = await this.collection.insertOne(newUser);
       return result;
-    } catch(ex){
-      throw(ex);
+    } catch(e){
+      throw(e);
     }
   }
 
@@ -61,8 +61,8 @@ class SecurityModel {
       }
       let rslt = await this.collection.insertOne(nuevo);
       return rslt;
-    } catch(ex){
-      throw(ex);
+    } catch(e){
+      throw(e);
     }
   }
 
@@ -71,16 +71,26 @@ class SecurityModel {
       const filter = {"email":email};
       let User = await this.collection.findOne(filter);
       return User;
-    }catch(ex){
-      throw(ex);
+    }catch(e){
+      throw(e);
     }
   }
 
   async comparePassword(rawPswd, crptoPswd){
     try{
       return await bcrypt.compare(rawPswd, crptoPswd);
-    }catch(ex){
-      throw(ex);
+    }catch(e){
+      throw(e);
+    }
+  }
+
+  async getUserById(id){
+    try{
+      const filter = {"_id":id};
+      let User = await this.collection.findOne(filter);
+      return User;
+    }catch(e){
+      throw(e);
     }
   }
 
