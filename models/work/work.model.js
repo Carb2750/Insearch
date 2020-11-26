@@ -1,5 +1,9 @@
+const { use } = require("passport");
 const MongoDB = require("../db");
 var ObjectID = require('mongodb').ObjectID;
+
+const UsersModel = require('../security/security.model');
+const users = new UsersModel();
 
 class WorkModel {
   collection = null;
@@ -27,8 +31,16 @@ class WorkModel {
 
   async addOne(document) {
     try {
+      const id_empresa = new ObjectID(document["id_empresa"])
+      const enterpriseUser = await users.getUserById(id_empresa);
       const fecha_publicacion = new Date().toJSON().slice(0,10).replace(/-/g,'/')
       document["fecha_publicacion"] = fecha_publicacion;
+      const enterpriseData = {
+        "id_empresa":id_empresa,
+        "enterprise_name":enterpriseUser["name"]
+      }
+      document["empresa"] = enterpriseData; 
+      delete document["id_empresa"]
       const result = await this.collection.insertOne(document);
     } catch (e) {
       console.log(e);
@@ -43,8 +55,8 @@ class WorkModel {
       const updOps = {"$set":{"nombre": nombre, "descripcion": descripcion, "responsabilidades": responsabilidades, "requisitos": requisitos, "preferencias": preferencias, "tipo_solicitud": tipo_solicitud, "duracion": duracion, "mensaje_aprobacion": mensaje_aprobacion, "mensaje_rechazo": mensaje_rechazo, "fecha_publicacion": fecha_publicacion}};
       let updDoc = await this.collection.findOneAndUpdate({ _id }, updOps, { returnOriginal:false});
       return updDoc;
-    }catch(ex){
-      throw(ex);
+    }catch(e){
+      throw(e);
     }
   }
 
@@ -53,8 +65,18 @@ class WorkModel {
       const _id = new ObjectID(id);
       let rslt = await this.collection.deleteOne({_id});
       return rslt;
-    }catch(ex){
-      throw(ex);
+    }catch(e){
+      throw(e);
+    }
+  }
+
+  async getAllByEnterprise(id) {
+    try{
+      const id_enterprise = new ObjectID(id);
+      const result = await this.collection.find({"empresa.id_empresa":id_enterprise}).toArray(); 
+      return result;
+    }catch(e) {
+      throw(e);
     }
   }
 }

@@ -20,8 +20,8 @@ router.post('/new', isAuth, async (req, res) => {
     try {
       const rol = req.body.rol;
       if(rol == "enterprise") {
-        const { nombre, descripcion, responsabilidades, requisitos, preferencias, tipo_solicitud, duracion, mensaje_aprobacion, mensaje_rechazo } = req.body;
-        const result = await mdbWorkModel.addOne({ nombre, descripcion, responsabilidades, requisitos, preferencias, tipo_solicitud, duracion, mensaje_aprobacion, mensaje_rechazo });
+        const { nombre, descripcion, responsabilidades, requisitos, preferencias, tipo_solicitud, duracion, mensaje_aprobacion, mensaje_rechazo, id_empresa } = req.body;
+        const result = await mdbWorkModel.addOne({ nombre, descripcion, responsabilidades, requisitos, preferencias, tipo_solicitud, duracion, mensaje_aprobacion, mensaje_rechazo, id_empresa });
         res.status(200).json({ msg: "Se agregó con exito" })
       }
       else {
@@ -67,5 +67,16 @@ router.delete("/delete/:id", isAuth, async (req, res) => {
     res.status(500).json({ "msg": "No se pudo borrar" });
   }
 })
+
+router.get("/getAllByEnterprise/:id", async (req, res) => {
+  try {
+    let {id} = req.params;
+    const rslt = await mdbWorkModel.getAllByEnterprise(id);
+    res.status(200).json(rslt);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ msg: "Algo salió mal" });
+  }
+});
 
 module.exports = router;
