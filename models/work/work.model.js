@@ -42,6 +42,7 @@ class WorkModel {
       document["empresa"] = enterpriseData; 
       delete document["id_empresa"]
       const result = await this.collection.insertOne(document);
+      return result;
     } catch (e) {
       console.log(e);
       throw e;

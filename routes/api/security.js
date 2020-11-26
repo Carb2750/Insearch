@@ -33,6 +33,7 @@ router.post('/signupuser', async(req, res)=>{
   try{
     let { username, email, name, lastname, password, birthdate, career, photo, achievements} = req.body;
     let rslt = await SecMdl.addUser({username, email, name, lastname, password, birthdate, career, photo, achievements});
+    res.status(200).json(rslt);
   }catch(ex){
     console.log(ex);
     res.status(500).json({"msg":"Algo Salió Mal"})
