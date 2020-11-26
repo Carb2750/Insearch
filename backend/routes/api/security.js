@@ -15,9 +15,9 @@ router.post('/login', async(req, res)=>{
     } else {
       let isValidPassword = await SecMdl.comparePassword(password, User.password);
       if(isValidPassword){
-        let { _id, email } = User;
-        let token = jwt.sign({ _id, email }, process.env.JWT_SECRET);
-        res.status(200).json({ jwt: token, user: { _id, email } });
+        let { _id, email, roles } = User;
+        let token = jwt.sign({ _id, email, roles }, process.env.JWT_SECRET);
+        res.status(200).json({ jwt: token, user: { _id, email, roles } });
       }else{
         console.log("Contraseña Incorrecta:" + email);
         res.status(401).json({ "error": "No se pueden validar sus credenciales." });
@@ -33,6 +33,7 @@ router.post('/signupuser', async(req, res)=>{
   try{
     let { username, email, name, lastname, password, birthdate, career, photo, achievements} = req.body;
     let rslt = await SecMdl.addUser({username, email, name, lastname, password, birthdate, career, photo, achievements});
+    res.status(200).json(rslt);
   }catch(ex){
     console.log(ex);
     res.status(500).json({"msg":"Algo Salió Mal"})
