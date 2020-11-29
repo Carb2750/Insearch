@@ -1,7 +1,7 @@
 const express = require('express');
 let router = express.Router();
 let jwt = require('jsonwebtoken');
-
+const isAuth = require('../../middleware/isAuth.js');
 let SecurityModel = require("../../models/security/security.model");
 let SecMdl = new SecurityModel();
 
@@ -51,4 +51,38 @@ router.post('/signup', async(req, res)=>{
   }
 }); 
 
+router.put("/update/:id", isAuth, async (req, res) => {
+  try {
+    const { id } = req.params;
+    let data = req.body;
+    let oneDocument = await SecMdl.getById(id);
+    const keys = Object.keys(data);
+    for(const key of keys){
+      if(oneDocument[key] !== data[key]){
+        oneDocument[key] = data[key];
+      }
+    }
+    if(oneDocument["roles"] == "enterprise"){
+      const result = await SecMdl.updateById(id, oneDocument);
+    } else {
+      const result = await SecMdl.updateUserById(id, oneDocument);
+    }
+    
+    res.status(200).json(oneDocument);
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({ msg: "No se pudo actualizar "});
+  }
+});
+
+router.delete("/delete/:id", isAuth, async (req, res) => {
+  try{
+    let {id} = req.params;
+    let rslt = await SecMdl.removeById(id);
+    res.status(200).json(rslt);
+  } catch(e){
+    console.log(e);
+    res.status(500).json({ "msg": "No se pudo borrar" });
+  }
+});
 module.exports = router;
