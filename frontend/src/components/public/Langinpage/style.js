@@ -8,7 +8,7 @@ export const StyledDiv = styled.div`
 
 export const StyledDivImage = styled.div`
     width: 100vw;
-    height: 95vh;
+    height: 100vh;
 
     background: url(${LandingPageImage});
     background-size: cover;
@@ -17,7 +17,7 @@ export const StyledDivImage = styled.div`
 export const StyledOverlayColor = styled.div`
     position: absolute;
     width: 100vw;
-    min-height: 95vh;
+    min-height: 100vh;
 
     background-color: #00000066;
 `

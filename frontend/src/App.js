@@ -9,6 +9,8 @@ import Register from './components/public/RegisterUser/RegisterOne/RegisterOne';
 import RegisterTwo from './components/public/RegisterUser/RegisterTwo/RegisterTwo';
 import RegisterThree from './components/public/RegisterUser/RegisterThree/RegisterThree';
 
+import JobPostedPage from './components/private/JobsPostedPage/JobPostedPage';
+
 const App = () => {
   return (
     <div>
@@ -20,6 +22,7 @@ const App = () => {
         <Route path="/register" exact component={Register}/>
         <Route path="/registertwo" exact component={RegisterTwo}/>
         <Route path="/registerthree" exact component={RegisterThree}/>
+        <Route path="/postedjobs" exact component={JobPostedPage}/>
       </Switch>
     </div>
   );

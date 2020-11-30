@@ -97,8 +97,8 @@ router.post('/apply', isAuth, async(req, res) => {
   try {
     const rol = req.body.rol;
     if(rol == "user") {
-      const {id, id_enterprise, work_name, approve_message, denied_message} = req.body;
-      const result = await applyModel.addOne({ id, id_enterprise, work_name, approve_message, denied_message });
+      const {id, id_enterprise, id_work} = req.body;
+      const result = await applyModel.addOne({ id, id_enterprise, id_work });
       res.status(200).json({ msg: "Se agregó con exito" })
     }
     else {

@@ -93,7 +93,47 @@ class SecurityModel {
       throw(e);
     }
   }
+  async getById(id) {
+    try{
+      const _id = new ObjectID(id);
+      let oneDoc = await this.collection.findOne({_id});
+      return oneDoc;
+    }catch(ex){
+      throw(ex);
+    }
+  }
 
+  async updateUserById(id, info) {
+    try{
+      const _id = new ObjectID(id);
+      const updOps = {"$set":{"username":info.username, "email":info.email, "name":info.name, "lastname":info.lastname, "password":info.password, "birthdate":info.birthdate, "career":info.career, "photo":info.photo, "achievements":info.achievements}};
+      let updDoc = await this.collection.findOneAndUpdate({ _id }, updOps, { returnOriginal:false});
+      return updDoc;
+    }catch(ex){
+      throw(ex);
+    }
+  }
+
+  async updateById(id, info) {
+    try{
+      const _id = new ObjectID(id);
+      const updOps = {"$set":{"email":info.email, "password":info.password, "name":info.name, "photo":info.photo, "description":info.description, "location":info.location, "website":info.website}};
+      let updDoc = await this.collection.findOneAndUpdate({ _id }, updOps, { returnOriginal:false});
+      return updDoc;
+    }catch(ex){
+      throw(ex);
+    }
+  }
+  
+  async removeById(id) {
+    try{
+      const _id = new ObjectID(id);
+      let rslt = await this.collection.deleteOne({_id});
+      return rslt;
+    }catch(ex){
+      throw(ex);
+    }
+  }
 }
 
 module.exports = SecurityModel;
