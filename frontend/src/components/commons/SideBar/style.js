@@ -1,8 +1,10 @@
 import styled from 'styled-components';
 
 export const StyledDiv = styled.div` 
-    width: 40vw;
-    height: 98vh;
+    position: relative;
+    
+    width: 35vw;
+    height: auto;
 
     padding: 2rem;
 
@@ -10,10 +12,12 @@ export const StyledDiv = styled.div`
 
     & .buttonGroup > button {
         margin-right: 1rem;
+        margin-bottom: 1rem;
     }
 
     & .applyChanges {
+        position: absolute;
         margin-top: 2rem;
-        margin-left: 65%;
+        right: 5%;
     }
 `;

@@ -8,11 +8,12 @@ export const StyledRegisterForm = styled.div`
     padding: 3rem;
 
     width: 40rem;
-    height: 40rem;
+    height: auto;
 
     position: absolute;
-    top: 20%;
-    right: 10%;
+    top: 50%;
+    right: 8%;
+    transform:translate(-8%, -50%);
 
 
     background-color: #ffffffdd;
@@ -42,9 +43,6 @@ export const StyledRegisterForm = styled.div`
     }
 
     button {
-        position: absolute;
-        bottom: 10%;
-        left: 50%;
-        transform: translateX(-50%);
+        margin: 0 auto;
     }
 `
