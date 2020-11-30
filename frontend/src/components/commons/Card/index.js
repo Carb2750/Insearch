@@ -24,7 +24,7 @@ const card = (props) => (
                     <p>{props.pay}</p>
                 </span>
             </div>
-            <span className="favIcon"><IoHeartOutline /></span>
+            {(props.favIcon) ? <span className="favIcon"><IoHeartOutline /></span> : null}
         </div>
     </StyledCard>
 );
