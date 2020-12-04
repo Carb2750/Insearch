@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledRegisterOne = styled.div `
+export const StyledRegisterTwo = styled.div `
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -18,22 +18,27 @@ export const StyledRegisterOne = styled.div `
 
     .title {
         text-align: center;
-        width: 70%;
+        width: 100%;
         font-size: 2rem;
         font-weight: bold;
-        margin-bottom: 2rem; 
+        margin-bottom: 1rem; 
     }
 
     .center {
-        text-align: center;
-        margin-top: 2rem; 
+        margin-top: 1.5rem; 
     }
 
-    & input {
-        margin-top: 2rem
+    .inline {
+        display: flex;
+        width: 100%;
     }
 
     button {
         margin-top: 1rem;
     }
-` 
+
+    .enlace {
+        margin-top: 1.5rem;
+        margin-left: 3rem;
+    }
+`

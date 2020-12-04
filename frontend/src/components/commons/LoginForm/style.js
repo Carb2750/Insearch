@@ -11,8 +11,9 @@ export const StyledLoginForm = styled.div `
     min-height: 500px;
 
     position: absolute;
-    top: 4rem;
-    right: 25rem;
+    top: 50%;
+    left: 50%;
+    transform:translate(-50%, -50%);
 
     background-color: #fffffffd;
     box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 2);
