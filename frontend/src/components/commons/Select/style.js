@@ -9,9 +9,9 @@ export const StyledP = styled.p`
   margin-bottom: 1rem;
   display: inline-block;
   width: 100%;
-`;
+`
 
-export const StyledInput = styled.input`
+export const StyledSelect = styled.select`
   border: none;
   border-radius: 4px;
   box-shadow: 0px 2px 2px #444444;
