@@ -30,19 +30,18 @@ const App = () => {
           <Route path="/jobs" exact component={withLayout(JobsPage)} />
           <Route path="/jobs/:id" exact component={withLayout(JobPage)}/>
           <Route path="/login" exact component={withLayout(Login)} />
-          <Route path="/pageUserOne" exact component={RegisterUser}/>
-          <Route path="/pageUserTwo" exact component={RegisterUserTwo}/>
-          <Route path="/pageUserThree" exact component={RegisterUserThree}/>
-          <Route path="/pageUserFour" exact component={RegisterUserFour}/>
-          <Route path="/pageCompanyOne" exact component={RegisterCompany}/>
-          <Route path="/pageCompanyTwo" exact component={RegisterCompanyTwo}/>
-          <Route path="/pageCompanyThree" exact component={RegisterCompanyThree}/>
+          <Route path="/pageUserOne" exact component={withLayout(RegisterUser)}/>
+          <Route path="/pageUserTwo" exact component={withLayout(RegisterUserTwo)}/>
+          <Route path="/pageUserThree" exact component={withLayout(RegisterUserThree)}/>
+          <Route path="/pageUserFour" exact component={withLayout(RegisterUserFour)}/>
+          <Route path="/pageCompanyOne" exact component={withLayout(RegisterCompany)}/>
+          <Route path="/pageCompanyTwo" exact component={withLayout(RegisterCompanyTwo)}/>
+          <Route path="/pageCompanyThree" exact component={withLayout(RegisterCompanyThree)}/>
           <Route path="/postedjobs" exact component={withLayout(JobPostedPage)}/>
           <Route path="/favorites" exact component={withLayout(FavoritesPage)}/>
           <Route path="/logout" exact component={withLayout(Logout)}/>
         </Switch>
       </StateProvider>
-      <Header />
     </div>
   );
 }
