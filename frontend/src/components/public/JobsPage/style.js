@@ -5,8 +5,8 @@ export const StyledDiv = styled.div`
 `;
 
 export const StyledCards = styled.div`
+    display:flex;
+    flex-direction: column;
+    align-items: center;
     margin: 2rem auto;
-    & > div {
-        margin-bottom: 1rem;
-    }
 `;
