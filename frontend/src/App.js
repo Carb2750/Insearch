@@ -5,9 +5,13 @@ import withLayout from './components/hoc/Layout/index';
 import LandingPage from './components/public/Langinpage/LandingPage';
 import JobsPage from './components/public/JobsPage/JobsPage';
 import Login from './components/public/LoginPage/Login';
-import Register from './components/public/RegisterUser/RegisterOne/RegisterOne';
-import RegisterTwo from './components/public/RegisterUser/RegisterTwo/RegisterTwo';
-import RegisterThree from './components/public/RegisterUser/RegisterThree/RegisterThree';
+import RegisterUser from './components/public/RegisterUserPage/PageOne/PageOne';
+import RegisterUserTwo from './components/public/RegisterUserPage/PageTwo/PageTwo';
+import RegisterUserThree from './components/public/RegisterUserPage/PageThree/PageThree';
+import RegisterUserFour from './components/public/RegisterUserPage/PageFour/PageFour';
+import RegisterCompany from './components/public/RegisterCompanyPage/PageOne/PageOne';
+import RegisterCompanyTwo from './components/public/RegisterCompanyPage/PageTwo/PageTwo';
+import RegisterCompanyThree from './components/public/RegisterCompanyPage/PageThree/PageThree';
 import JobPostedPage from './components/private/JobsPostedPage/JobPostedPage';
 import JobPage from './components/public/JobsPage/JobPage/JobPage';
 import FavoritesPage from './components/private/FavoritesPage/FavoritesPage';
@@ -26,14 +30,19 @@ const App = () => {
           <Route path="/jobs" exact component={withLayout(JobsPage)} />
           <Route path="/jobs/:id" exact component={withLayout(JobPage)}/>
           <Route path="/login" exact component={withLayout(Login)} />
-          <Route path="/register" exact component={withLayout(Register)}/>
-          <Route path="/registertwo" exact component={withLayout(RegisterTwo)}/>
-          <Route path="/registerthree" exact component={withLayout(RegisterThree)}/>
+          <Route path="/pageUserOne" exact component={RegisterUser}/>
+          <Route path="/pageUserTwo" exact component={RegisterUserTwo}/>
+          <Route path="/pageUserThree" exact component={RegisterUserThree}/>
+          <Route path="/pageUserFour" exact component={RegisterUserFour}/>
+          <Route path="/pageCompanyOne" exact component={RegisterCompany}/>
+          <Route path="/pageCompanyTwo" exact component={RegisterCompanyTwo}/>
+          <Route path="/pageCompanyThree" exact component={RegisterCompanyThree}/>
           <Route path="/postedjobs" exact component={withLayout(JobPostedPage)}/>
           <Route path="/favorites" exact component={withLayout(FavoritesPage)}/>
           <Route path="/logout" exact component={withLayout(Logout)}/>
         </Switch>
       </StateProvider>
+      <Header />
     </div>
   );
 }

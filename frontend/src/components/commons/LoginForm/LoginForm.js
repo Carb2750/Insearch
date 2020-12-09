@@ -11,7 +11,7 @@ const LoginForm = (props) => {
             <div className="center">
                 <Input name={props.names.email} value={props.values.email} onChange={props.onChange} label ="Usuario:" input inputSize={'25rem'}/>
                 <Input name={props.names.pass} value={props.values.pass} onChange={props.onChange} label ="Contraseña:" input inputSize={'25rem'}/>
-                <p className="link">¿No tienes cuenta? <Link link="/register">Registrate</Link></p>
+                <p className="link">¿No tienes cuenta? <Link link="/pageUserOne">Registrate</Link></p>
             </div>
             <Button onClick={props.buttonHandler}>Ingresar</Button>
         </StyledLoginForm>

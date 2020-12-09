@@ -21,20 +21,24 @@ export const StyledRegisterTwo = styled.div `
         width: 100%;
         font-size: 2rem;
         font-weight: bold;
-        margin-bottom: 2rem; 
+        margin-bottom: 1rem; 
     }
 
     .center {
-        margin-top: 2rem; 
+        margin-top: 1.5rem; 
     }
 
     .inline {
         display: flex;
         width: 100%;
     }
-    
+
     button {
         margin-top: 1rem;
     }
 
+    .enlace {
+        margin-top: 1.5rem;
+        margin-left: 3rem;
+    }
 `
