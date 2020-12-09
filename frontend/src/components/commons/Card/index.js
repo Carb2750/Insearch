@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 import { StyledCard } from './style';
 
-import { IoLaptopOutline, IoTimeOutline, IoCashOutline, IoHeartOutline, IoPersonCircleOutline } from 'react-icons/io5';
+import { IoLaptopOutline, IoTimeOutline, IoCashOutline, IoHeartOutline, IoPersonCircleOutline, IoCloseOutline } from 'react-icons/io5';
 
 const card = (props) => (
     <StyledCard>
@@ -37,6 +37,7 @@ const card = (props) => (
                     </div>
                 </Link>
                     {(props.favIcon) ? <span onClick={props.addFav} className={(props.favorite) ? "favIcon selected" : "favIcon"}><IoHeartOutline /></span> : null}
+                    {(props.delIcon) ? <span onClick={props.delJob} className="delIcon"><IoCloseOutline size='25px' /></span> : null}
             </div>
         </StyledCard>
 );
