@@ -1,9 +1,9 @@
 import { Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import Header from './components/commons/Header/index';
+import withLayout from './components/hoc/Layout/index';
 import LandingPage from './components/public/Langinpage/LandingPage';
-import JobPage from './components/public/JobPage/JobPage';
+import JobsPage from './components/public/JobsPage/JobsPage';
 import Login from './components/public/LoginPage/Login';
 import RegisterUser from './components/public/RegisterUserPage/PageOne/PageOne';
 import RegisterUserTwo from './components/public/RegisterUserPage/PageTwo/PageTwo';
@@ -13,26 +13,38 @@ import RegisterCompany from './components/public/RegisterCompanyPage/PageOne/Pag
 import RegisterCompanyTwo from './components/public/RegisterCompanyPage/PageTwo/PageTwo';
 import RegisterCompanyThree from './components/public/RegisterCompanyPage/PageThree/PageThree';
 import JobPostedPage from './components/private/JobsPostedPage/JobPostedPage';
+import JobPage from './components/public/JobsPage/JobPage/JobPage';
 import CreateRequest from './components/private/CreateRequest/CreateRequest';
+import FavoritesPage from './components/private/FavoritesPage/FavoritesPage';
+import Logout from './components/private/LogoutPage/LogoutPage';
+
+import { StateProvider } from './utils/context';
+import mainReducer from './utils/store/store.js';
 
 const App = () => {
+  let appState = mainReducer();
   return (
     <div>
-      <Header />
-      <Switch>
-        <Route path="/" exact component={LandingPage} />
-        <Route path="/practicas" exact component={JobPage} />
-        <Route path="/login" exact component={Login} />
-        <Route path="/pageUserOne" exact component={RegisterUser}/>
-        <Route path="/pageUserTwo" exact component={RegisterUserTwo}/>
-        <Route path="/pageUserThree" exact component={RegisterUserThree}/>
-        <Route path="/pageUserFour" exact component={RegisterUserFour}/>
-        <Route path="/pageCompanyOne" exact component={RegisterCompany}/>
-        <Route path="/pageCompanyTwo" exact component={RegisterCompanyTwo}/>
-        <Route path="/pageCompanyThree" exact component={RegisterCompanyThree}/>
-        <Route path="/postedjobs" exact component={JobPostedPage}/>
-        <Route path="/createrequest" exact component={CreateRequest}/>
-      </Switch>
+      <StateProvider initialState={appState} reducer={mainReducer}>
+        <Switch>
+          <Route path="/" exact component={withLayout(LandingPage)} />
+          <Route path="/jobs" exact component={withLayout(JobsPage)} />
+          <Route path="/jobs/:id" exact component={withLayout(JobPage)}/>
+          <Route path="/login" exact component={withLayout(Login)} />
+          <Route path="/practicas" exact component={withLayout(JobPage)} />
+          <Route path="/pageUserOne" exact component={withLayout(RegisterUser)}/>
+          <Route path="/pageUserTwo" exact component={withLayout(RegisterUserTwo)}/>
+          <Route path="/pageUserThree" exact component={withLayout(RegisterUserThree)}/>
+          <Route path="/pageUserFour" exact component={withLayout(RegisterUserFour)}/>
+          <Route path="/pageCompanyOne" exact component={withLayout(RegisterCompany)}/>
+          <Route path="/pageCompanyTwo" exact component={withLayout(RegisterCompanyTwo)}/>
+          <Route path="/pageCompanyThree" exact component={withLayout(RegisterCompanyThree)}/>
+          <Route path="/postedjobs" exact component={withLayout(JobPostedPage)}/>
+          <Route path="/createrequest" exact component={withLayout(CreateRequest)}/>
+          <Route path="/favorites" exact component={withLayout(FavoritesPage)}/>
+          <Route path="/logout" exact component={withLayout(Logout)}/>
+        </Switch>
+      </StateProvider>
     </div>
   );
 }

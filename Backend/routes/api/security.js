@@ -72,6 +72,8 @@ router.put("/update/:id", isAuth, async (req, res) => {
     const { id } = req.params;
     let data = req.body;
     let oneDocument = await SecMdl.getById(id);
+    data["photo"] == req.file.path;
+
     const keys = Object.keys(data);
     for(const key of keys){
       if(oneDocument[key] !== data[key]){

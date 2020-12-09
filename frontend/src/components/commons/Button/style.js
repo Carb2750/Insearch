@@ -8,9 +8,13 @@ export const StyledButton = styled.button`
   font-size: 1.4rem;
   padding: 0.5rem 1rem 0.5rem 1rem;
 
-  &:hover {
+  &:hover, &:active {
     background-color: ${props => props.theme.bgHover};
     border: ${props => props.theme.borderHover};
     cursor: pointer;
+  }
+
+  &.active {
+    border-color: #61BB6A;
   }
 `;

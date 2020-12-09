@@ -2,7 +2,7 @@ import { StyledDiv, StyledCards } from './style';
 
 import Card from '../../commons/Card/index';
 
-const jobPostedPage = () => {
+const JobPostedPage = () => {
     return (
         <StyledDiv>
             <h1>Trabajos Publicados</h1>
@@ -27,4 +27,4 @@ const jobPostedPage = () => {
     );
 }
 
-export default jobPostedPage;
+export default JobPostedPage;

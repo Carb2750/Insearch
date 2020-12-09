@@ -5,7 +5,7 @@ import Links from '../Links/index';
 const header = (props) => (
     <StyledHeader>
         <p>Insearch</p>
-        <Links />
+        <Links isAuth={props.isAuth} />
     </StyledHeader>
 )
 

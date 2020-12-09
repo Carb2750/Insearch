@@ -46,6 +46,8 @@ class FavoriteModel {
       delete document["mensaje_aprobacion"]
       delete document["mensaje_rechazo"]
       const result = await this.collection.insertOne(document);
+
+      return result;
     } catch (e) {
       console.log(e);
       throw e;

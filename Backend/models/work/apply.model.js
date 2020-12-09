@@ -10,8 +10,11 @@ class ApplyModel {
 
   constructor() {
     const db = MongoDB.getDB()
-      .then((db) => {
+      .then(async (db) => {
         this.collection = db.collection("applied_jobs");
+        // if (process.env.ENSURE_INDEX == "1") {
+        //   await this.collection.createIndex({ "id_user": 1 }, { unique: true });
+        // }
       })
       .catch((e) => {
         console.log(e);
@@ -31,9 +34,9 @@ class ApplyModel {
 
   async addOne(document) {
     try {
-      const id = new ObjectID(document["id"]); 
-      const idEnterprise = new ObjectID(document["id_enterprise"]);
-      const {username, email, name, lastname, career, photo, achievements} = await users.getUserById(id);
+      const id = new ObjectID(document["id_user"]); 
+      const {username, email, name, lastname, career, photo} = await users.getUserById(id);
+      const id_work = new ObjectID(document.id_work);
 
       document = {
           ...document,
@@ -42,15 +45,14 @@ class ApplyModel {
           name,
           lastname,
           career,
-          photo,
-          achievements
+          photo
       }
 
       const appliedDate = new Date().toJSON().slice(0,10).replace(/-/g,'/')
       document["fecha"] = appliedDate;
-      document["id_empresa"] = idEnterprise;
-      delete document["id_enterprise"]
-      const result = await this.collection.insertOne(document);
+      // document["id_empresa"] = idEnterprise;
+      // delete document["id_enterprise"]
+      await this.collection.update({"id_user":id, 'id_work':id_work}, {'$setOnInsert':document}, {upsert:true});
     } catch (e) {
       console.log(e);
       throw e;
