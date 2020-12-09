@@ -4,6 +4,7 @@ export const StyledDiv = styled.div`
     position: relative;
     
     width: 35vw;
+    min-height: 100vh;
     height: auto;
 
     padding: 2rem;

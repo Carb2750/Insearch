@@ -14,8 +14,19 @@ code {
     monospace;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+  margin: inherit;
+  padding: inherit;
+}
+
 div, ul, li, p, a {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+button {
+  outline: none;
 }

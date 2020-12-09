@@ -19,13 +19,57 @@ class WorkModel {
       });
   }
 
-  async getAll() {
+  async getAll(document) {
     try {
-      const result = await this.collection.find({}).toArray();
+      let totalItems;
+      this.collection.countDocuments().then(
+        count => {
+          totalItems = count;
+      }
+      ).catch(e => {
+        console.log(e);
+      }) 
+      const query = {};
+      (document.puesto !== "") ? (query.puesto = document.puesto) : "";
+      (document.experiencia !== "") ? (query.experiencia = document.experiencia) : "";
+      const result = await this.collection.find(query).sort({$natural:-1}).skip((document.currentPage - 1) * document.perPage).limit(document.perPage).toArray();
+      result["totalItems"] = totalItems;
       return result;
-    } catch (e) {
+    } catch(e) {
       console.log(e);
-      throw e;
+      throw(e)
+    }
+  }
+
+  async getByFilter(document) {
+    try {
+      let totalItems;
+      this.collection.countDocuments().then(
+        count => {
+          totalItems = count;
+      }
+      ).catch(e => {
+        console.log(e);
+      }) 
+      const query = {};
+      (document.puesto !== "") ? (query.puesto = document.puesto) : "";
+      (document.experiencia !== "") ? (query.experiencia = document.experiencia) : "";
+      const result = await this.collection.find(query).sort({$natural:-1}).skip((document.currentPage - 1) * document.perPage).limit(document.perPage).toArray();
+      result["totalItems"] = totalItems;
+      return result;
+    } catch(e) {
+      console.log(e);
+      throw(e)
+    }
+  }
+
+  async getById(document) {
+    try {
+      const id = new ObjectID(document._id)
+      const result = await this.collection.find({"_id":id}).toArray();
+      return result[0];
+    } catch(e) {
+      throw(e);
     }
   }
 
@@ -37,7 +81,8 @@ class WorkModel {
       document["fecha_publicacion"] = fecha_publicacion;
       const enterpriseData = {
         "id_empresa":id_empresa,
-        "enterprise_name":enterpriseUser["name"]
+        "enterprise_name":enterpriseUser["name"],
+        "photo":enterpriseUser["photo"]
       }
       document["empresa"] = enterpriseData; 
       delete document["id_empresa"]
@@ -77,6 +122,30 @@ class WorkModel {
       const result = await this.collection.find({"empresa.id_empresa":id_enterprise}).toArray(); 
       return result;
     }catch(e) {
+      throw(e);
+    }
+  }
+
+  async getFavs(user) {
+    try {
+      const result = await this.collection.find({"_id":{"$in":user.favs}}).sort({$natural:-1}).toArray();
+      return result;
+    } catch(e) {
+      throw(e);
+    }
+  }
+
+  async addToFav(document) {
+    try{
+      const id_user = new ObjectID(document["id_user"]);
+      const id_work = new ObjectID(document["id_work"]);
+
+      const addOps = {"$addToSet":{"favs":id_user}};
+      
+      await users.addToFav(id_user, id_work);
+      await this.collection.findOneAndUpdate({"_id":id_work}, addOps, { returnOriginal:false });
+      return {"msg":"Agregado a favoritos"};
+    }catch(e){
       throw(e);
     }
   }

@@ -8,7 +8,7 @@ const button = (props) => {
 
     return (
         <ThemeProvider theme={theme}>
-            <StyledButton>{props.children}</StyledButton>
+            <StyledButton onClick={props.onClick} className={(props.active) ? "active" : null}>{props.children}</StyledButton>
         </ThemeProvider>
     );
 } 

@@ -11,13 +11,13 @@ export const StyledP = styled.p`
   width: 100%;
 `
 
-export const StyledSelect = styled.select`
+export const StyledTextarea = styled.textarea`
   border: none;
   border-radius: 4px;
   box-shadow: 0px 2px 2px #444444;
 
   margin-bottom: 1.2rem;
 
-  width: ${(props) => props.size};
-  height: 1.6rem;
+  width: ${(props) => props.rows};
+  height: ${(props) => props.cols};
 `;

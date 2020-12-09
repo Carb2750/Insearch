@@ -2,13 +2,18 @@ import styled from "styled-components";
 
 export const StyledCard = styled.div`
   position: relative;
-  min-width: 30rem;
+  min-width: 50rem;
   max-width: 50rem;
   min-height: 10rem;
-  max-height: 15rem;
+  max-height: 20rem;
   background-color: #ffffff;
   box-shadow: 2px 3px 3px #444444;
-  padding: 1.5rem;
+  margin-bottom: 1rem;
+  /* padding: 1.5rem; */
+
+  &:hover {
+      background-color: #eeeeee;
+  }
 
   .heading {
     display: flex;
@@ -17,9 +22,50 @@ export const StyledCard = styled.div`
 
     width: 100%;
 
-    p {
+    .date {
       font-weight: bold;
     }
+
+    h2 {
+      margin: 0;
+    }
+
+    .jobMetaData {
+      margin-top: 7%;
+
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+
+    .jobMetaData .userIcon {
+      width: 3rem;
+      height: auto;
+
+      margin-right: 0.5rem;
+    }
+
+    .jobMetaData img {
+      width: 4rem;
+      height: 4rem;
+
+      border-radius: 5px;
+
+      margin-right: 1rem;
+    }
+
+    .jobMetaData svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .jobName {
+    font-size: 1.2rem;
+    white-space: nowrap;
+    font-weight: bold;
+
+    margin: 1% 0 1% 5%;
   }
 
   .body {
@@ -36,6 +82,9 @@ export const StyledCard = styled.div`
     }
 
     & .generalInfo {
+      min-width: 15%;
+      margin-left: auto;
+      margin-bottom: 2%;
       & span {
         display: flex;
       }
@@ -44,6 +93,7 @@ export const StyledCard = styled.div`
         font-weight: bold;
         margin-left: 0.2rem;
         margin-bottom: 0.5rem;
+        white-space: nowrap;
       }
     }
   }
@@ -52,6 +102,7 @@ export const StyledCard = styled.div`
     position: absolute;
     right: 5%;
     bottom: 5%;
+    z-index: 10;
   }
 
   .favIcon svg:hover {
@@ -62,5 +113,10 @@ export const StyledCard = styled.div`
   .favIcon.selected svg * {
     color: red;
     fill: red;
+  }
+
+  & a {
+    display: inline-block;
+    padding: 1.5rem;
   }
 `;
