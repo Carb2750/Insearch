@@ -12,19 +12,28 @@ const links = (props) => {
         </StyledLinks>
     );
 
-    if(props.isAuth) {
+    if(props.isAuth && props.rol === "user") {
         nav = (
         <StyledLinks>
             <Link link="/">Home</Link>
             <Link link="/jobs">Prácticas</Link>
-            <Link link="/profile">Perfil</Link>
             <Link link="/favorites">Favoritos</Link>
             <Link link="/logout">Logout</Link>
         </StyledLinks>
         )
     }
+    if(props.isAuth && props.rol === "enterprise") {
+        nav = (
+            <StyledLinks>
+                <Link link="/">Home</Link>
+                <Link link="/createrequest">Publicar Trabajo</Link>
+                <Link link="/postedjobs">Trabajos Posteados</Link>
+                <Link link="/logout">Logout</Link>
+            </StyledLinks>
+        )
+    }
 
-    console.log(props.isAuth);
+    console.log("PROPS: " + props.rol);
 
     return (
         {...nav}
