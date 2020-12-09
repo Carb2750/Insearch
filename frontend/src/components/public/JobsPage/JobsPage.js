@@ -120,13 +120,13 @@ const JobsPage = (props) => {
               {jobs.jobs.map(data => {
                 if(props.user) {
                   if(data.favs.find(jobId => jobId === props.user._id)){
-                    return(<Card link={'/jobs/' + data._id} favorite key={data["_id"]} addFav={() => removeFavorite(data._id)} enterpriseName={data["empresa"]["enterprise_name"]} jobTitle={data["titulo"]} img={"http://localhost:3000/" + data["empresa"]["photo"]} date={data["fecha_publicacion"]} job={data["puesto"]} time={data["duracion"]["tiempo"] + " " + data["duracion"]["periodo"]} pay="3000$" favIcon>
+                    return(<Card link={'/jobs/' + data._id} favorite key={data["_id"]} addFav={() => removeFavorite(data._id)} enterpriseName={data["empresa"]["enterprise_name"]} jobTitle={data["titulo"]} img={"http://localhost:3000/" + data["empresa"]["photo"]} date={data["fecha_publicacion"]} job={data["puesto"]} time={data["duracion"]["tiempo"] + " " + data["duracion"]["periodo"]} pay={data.salario + '$'} favIcon>
                       {data["descripcion"]}
                     </Card>)
                   }
                 }
                 return(
-                  <Card link={'/jobs/' + data._id} key={data["_id"]} addFav={() => addFavorite(data._id)} enterpriseName={data["empresa"]["enterprise_name"]} jobTitle={data["titulo"]} img={"http://localhost:3000/" + data["empresa"]["photo"]} date={data["fecha_publicacion"]} job={data["puesto"]} time={data["duracion"]["tiempo"] + " " + data["duracion"]["periodo"]} pay="3000$" favIcon>
+                  <Card link={'/jobs/' + data._id} key={data["_id"]} addFav={() => addFavorite(data._id)} enterpriseName={data["empresa"]["enterprise_name"]} jobTitle={data["titulo"]} img={"http://localhost:3000/" + data["empresa"]["photo"]} date={data["fecha_publicacion"]} job={data["puesto"]} time={data["duracion"]["tiempo"] + " " + data["duracion"]["periodo"]} pay={data.salario + '$'} favIcon>
                       {data["descripcion"]}
                   </Card> 
                 )

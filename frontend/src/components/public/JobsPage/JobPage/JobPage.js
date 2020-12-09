@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Fragment } from 'react';
 
 import { useStateContext } from '../../../../utils/context';
 import { JOBS_SET_CURRENT, JOBS_ERROR } from '../../../../utils/store/reducers/jobs.reducer';
@@ -6,10 +6,15 @@ import { JOBS_SET_CURRENT, JOBS_ERROR } from '../../../../utils/store/reducers/j
 import axios from 'axios';
 import { pubAxios, privAxios } from '../../../../utils/axios';
 
+import { StyledDiv } from './style';
+
+import { IoLaptopOutline, IoTimeOutline, IoCashOutline, IoPersonCircleOutline } from 'react-icons/io5';
+
 const JobPage = (props) => {
 
     const [currentJob, setJob] = useState({});
     const [{jobs}, dispatch] = useStateContext();
+    const [isLoaded, setLoaded] = useState(false);
     const id = props.match.params.id;
 
     useEffect(() => {
@@ -17,12 +22,15 @@ const JobPage = (props) => {
             dispatch({type:JOBS_SET_CURRENT});
             const job = jobs.jobs.filter(job => job._id === id)[0];
             setJob(job);
+            setLoaded(true);
         }
         else {
             axios.get('http://localhost:3000/api/works/getById/' + id)
             .then(job => {
                 const fetchedJob = job.data;
+                console.log(fetchedJob);
                 setJob(fetchedJob);
+                setLoaded(true);
             })
             .catch(e => {
                 console.log(e);
@@ -30,32 +38,70 @@ const JobPage = (props) => {
             });
         }
 
-        console.log("USER: " + JSON.stringify(props.user));
-
         if(jobs.jobId === null) {
             console.log("ERRRRRORRR");
         }
     }, []); 
 
-    const onApply = (jobId) => {
-        privAxios.post('http://localhost:3000/api/works/apply', 
-        {
-            'id_user':props.user._id,
-            'id_work':jobId,
-            'rol':props.user.roles[0]
-        });
-    }
-
-    console.log(currentJob);
     return (
-        <div>
-            <h1>{currentJob.titulo}</h1>
-            <h2>{(currentJob.empresa) ? currentJob.empresa.enterprise_name : null}</h2>
-            <p>{currentJob.descripcion}</p>
-            <p>{currentJob.tipo_solicitud}</p>
-            <p>{currentJob.puesto}</p>
-            <button onClick={() => onApply(currentJob._id)}>Aplicar</button>
-        </div>
+        <StyledDiv>
+            {
+            (isLoaded) ?
+            <Fragment>
+                <div className="data">
+                    <div className="enterpriseData">
+                        {(currentJob.empresa.photo) ? <img src={"http://localhost:3000/" + currentJob.empresa.photo} /> : <span><IoPersonCircleOutline /></span>}
+                        <h1>{currentJob.empresa.enterprise_name}</h1>
+                    </div>
+                    <div className="jobData">
+                        <span>
+                            <IoLaptopOutline />
+                            <p>{currentJob.puesto}</p>
+                        </span>
+                        <span>
+                            <IoTimeOutline />
+                            <p>{currentJob["duracion"]["tiempo"] + " " + currentJob["duracion"]["periodo"]}</p>
+                        </span>
+                        <span>
+                            <IoCashOutline />
+                            <p>{currentJob.salario + '$'}</p>
+                        </span>
+                        <span>
+                            <IoTimeOutline />
+                            <p>{currentJob.experiencia}</p>
+                        </span>
+                    </div>
+                </div>
+                <div className="jobDetail">
+                    <h2 className="titulo">{currentJob.titulo}</h2>
+                    <p>{currentJob.descripcion}</p>
+                    <div className="metadata">
+                        <h2>Responsabilidades:</h2>
+                        <ul>
+                            {currentJob["responsabilidades"].map((responsabilidad) => (
+                            <li>{responsabilidad}</li>
+                            ))}
+                        </ul>
+                        <h2>Requisitos:</h2>
+                        <ul>
+                            {currentJob["requisitos"].map((requisito) => (
+                            <li>{requisito}</li>
+                            ))}
+                        </ul>
+                        <h2>Preferencias:</h2>
+                        <ul>
+                            {currentJob["preferencias"].map((preferencia) => (
+                            <li>{preferencia}</li>
+                            ))}
+                        </ul>
+                    </div>
+                    <p className="contact">Contacto: {currentJob.empresa.email}</p>
+                </div>
+            </Fragment>
+             :  
+            null
+            }
+        </StyledDiv>
     );
 };
 
