@@ -52,6 +52,11 @@ export const StyledRegisterOne = styled.div `
         margin-bottom: 2rem;
     }
 
+    .square:hover {
+        color:#fff;
+        background: #736E6E;
+    }
+
     .img {
         display: inline-block;
         width: 200px;
@@ -60,12 +65,7 @@ export const StyledRegisterOne = styled.div `
         cursor: pointer;
         margin-bottom: 2rem;
     }
-
-    .square:hover {
-        color:#fff;
-        background: #736E6E;
-    }
-
+    
     .inline {
         display: flex;
         width: 100%;
@@ -74,11 +74,5 @@ export const StyledRegisterOne = styled.div `
     & input {
         margin-bottom: 3rem
     }
-
-    & select {
-        margin-bottom: 3rem
-    }
-
-
 
 ` 

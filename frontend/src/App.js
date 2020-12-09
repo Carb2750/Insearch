@@ -13,6 +13,7 @@ import RegisterCompany from './components/public/RegisterCompanyPage/PageOne/Pag
 import RegisterCompanyTwo from './components/public/RegisterCompanyPage/PageTwo/PageTwo';
 import RegisterCompanyThree from './components/public/RegisterCompanyPage/PageThree/PageThree';
 import JobPostedPage from './components/private/JobsPostedPage/JobPostedPage';
+import CreateRequest from './components/private/CreateRequest/CreateRequest';
 
 const App = () => {
   return (
@@ -30,6 +31,7 @@ const App = () => {
         <Route path="/pageCompanyTwo" exact component={RegisterCompanyTwo}/>
         <Route path="/pageCompanyThree" exact component={RegisterCompanyThree}/>
         <Route path="/postedjobs" exact component={JobPostedPage}/>
+        <Route path="/createrequest" exact component={CreateRequest}/>
       </Switch>
     </div>
   );

@@ -11,7 +11,8 @@ const LoginForm = () => {
             <div className="center">
                 <Input label ="Usuario:" input inputSize={'25rem'}/>
                 <Input label ="Contraseña:" type="password" input inputSize={'25rem'}/>
-                <p className="link">¿No tienes cuenta? <Link link="/pageUserOne">Registrate</Link></p>
+                    <p className="link">¿No tienes cuenta? <Link link="/pageUserOne">Registrate</Link></p>
+                    <p className="link">¿O acaso tienes una empresa? <Link link="/pageCompanyOne">Unetenos</Link></p>
             </div>
             <Button>Ingresar</Button>
         </StyledLoginForm>
