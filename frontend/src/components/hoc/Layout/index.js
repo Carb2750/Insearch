@@ -10,7 +10,6 @@ const withLayout = (WrappedComponent) => props => {
     const [{auth}, dispatch] = useStateContext();
 
     useEffect(() => {
-        console.log("FETCH: " + auth.logged);
         if(auth.logged === false) {
             dispatch(LOGIN_FETCH);
         }
@@ -19,7 +18,7 @@ const withLayout = (WrappedComponent) => props => {
     // console.log("PROP: ", props.children);
     return (
         <Fragment>
-            <Header isAuth={auth.logged} />
+            <Header isAuth={auth.logged} rol={(auth.user.roles) ? auth.user.roles[0] : null} />
             <WrappedComponent {...props} user={auth.user} />
         </Fragment>
     );
