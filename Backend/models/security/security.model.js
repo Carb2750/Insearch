@@ -86,6 +86,7 @@ class SecurityModel {
 
   async getUserById(id){
     try{
+      console.log(id);
       const filter = {"_id":id};
       let User = await this.collection.findOne(filter);
       return User;
@@ -132,6 +133,28 @@ class SecurityModel {
       return rslt;
     }catch(ex){
       throw(ex);
+    }
+  }
+
+  async getFavs(id) {
+    try {
+      id = new ObjectID(id);
+      const user = await this.getUserById(id);
+      return user;
+    } catch(e) {
+      throw(e)
+    }
+  }
+
+  async addToFav(id, id_work) {
+    try {
+      const _id = new ObjectID(id);
+      id_work = new ObjectID(id_work);
+  
+      const addOps = {"$addToSet":{"favs":id_work}};
+      await this.collection.findOneAndUpdate({_id}, addOps, { returnOriginal:false });
+    } catch(e) {
+      throw(e);
     }
   }
 }
