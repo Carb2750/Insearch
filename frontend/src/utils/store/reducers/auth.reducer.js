@@ -36,11 +36,10 @@ switch(action.type){
         localStorage.setItem("store_auth", JSON.stringify(newState));
         return { ...newState};
     case LOGIN_FETCH:
-        console.log("FETCH: " + initialState);
         return {...initialState};
     case LOGOUT:
-        localStorage.setItem("store_auth", null);
-        return { ...initialState };
+        localStorage.clear();
+        return { ...emptyAuth };
     case JWT_INVALID:
         return { ...emptyAuth, redirect:action.payload.to };
     case SIGNIN_FETCHING:
