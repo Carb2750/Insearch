@@ -44,8 +44,7 @@ export const StyledLoginForm = styled.div `
         margin-top: 1rem;
     }
     
-    .link {
-        text-align: right;
+    link {
+        margin-left: 22rem;
     }
-    
 `

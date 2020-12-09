@@ -8,7 +8,7 @@ export const StyledDiv = styled.div`
 
 export const StyledDivImage = styled.div`
     width: 55vw;
-    height: 135vh;
+    height: 190vh;
 
     background: url(${RegisterPageImage});
     background-repeat: no-repeat;

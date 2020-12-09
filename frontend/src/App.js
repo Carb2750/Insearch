@@ -14,6 +14,7 @@ import RegisterCompanyTwo from './components/public/RegisterCompanyPage/PageTwo/
 import RegisterCompanyThree from './components/public/RegisterCompanyPage/PageThree/PageThree';
 import JobPostedPage from './components/private/JobsPostedPage/JobPostedPage';
 import JobPage from './components/public/JobsPage/JobPage/JobPage';
+import CreateRequest from './components/private/CreateRequest/CreateRequest';
 import FavoritesPage from './components/private/FavoritesPage/FavoritesPage';
 import Logout from './components/private/LogoutPage/LogoutPage';
 
@@ -30,6 +31,7 @@ const App = () => {
           <Route path="/jobs" exact component={withLayout(JobsPage)} />
           <Route path="/jobs/:id" exact component={withLayout(JobPage)}/>
           <Route path="/login" exact component={withLayout(Login)} />
+          <Route path="/practicas" exact component={withLayout(JobPage)} />
           <Route path="/pageUserOne" exact component={withLayout(RegisterUser)}/>
           <Route path="/pageUserTwo" exact component={withLayout(RegisterUserTwo)}/>
           <Route path="/pageUserThree" exact component={withLayout(RegisterUserThree)}/>
@@ -38,6 +40,7 @@ const App = () => {
           <Route path="/pageCompanyTwo" exact component={withLayout(RegisterCompanyTwo)}/>
           <Route path="/pageCompanyThree" exact component={withLayout(RegisterCompanyThree)}/>
           <Route path="/postedjobs" exact component={withLayout(JobPostedPage)}/>
+          <Route path="/createrequest" exact component={withLayout(CreateRequest)}/>
           <Route path="/favorites" exact component={withLayout(FavoritesPage)}/>
           <Route path="/logout" exact component={withLayout(Logout)}/>
         </Switch>
