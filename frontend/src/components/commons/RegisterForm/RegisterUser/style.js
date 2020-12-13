@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledRegisterFour = styled.div `
+export const StyledRegisterOne = styled.div `
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -8,7 +8,7 @@ export const StyledRegisterFour = styled.div `
 
     margin: auto;
     width: 45vw;
-    height: 95vh;
+    height: 100%;
 
     position: absolute;
     top: 0rem;
@@ -21,13 +21,22 @@ export const StyledRegisterFour = styled.div `
         width: 70%;
         font-size: 2rem;
         font-weight: bold;
-        position: absolute;
-        top: 15%;
-        left: 0%
-        transform:translate(-15%, 0%);
+        margin-bottom: 2rem; 
     }
 
-    #upload {
+    .titles {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: bold;
+        margin-bottom: 2rem; 
+    }
+
+    .center {
+        text-align: center;
+        margin-top: 2rem; 
+    }
+
+    #img {
         display: none;
     }
 
@@ -54,16 +63,16 @@ export const StyledRegisterFour = styled.div `
         width: 200px;
         height: 200px;
         border-radius: 10px;
-        cursor: pointer;
         margin-bottom: 2rem;
     }
-
-    button {
-        margin-left: 0.5rem;
-        position: absolute;
-        top: 81%;
-        left: 0%
-        transform:translate(-81%, 0%);   
+    
+    .inline {
+        display: flex;
+        width: 100%;
     }
 
-`
+    & input {
+        margin-bottom: 3rem
+    }
+
+` 

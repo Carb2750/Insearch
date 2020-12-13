@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import RegisterPageImage from '../../../../assets/images/register-page.jpg';
+import RegisterPageImage from '../../../assets/images/register-page.jpg';
 
 export const StyledDiv = styled.div`
     position: relative;
@@ -8,7 +8,7 @@ export const StyledDiv = styled.div`
 
 export const StyledDivImage = styled.div`
     width: 55vw;
-    height: 215vh;
+    height: 240vh;
 
     background: url(${RegisterPageImage});
     background-repeat: no-repeat;

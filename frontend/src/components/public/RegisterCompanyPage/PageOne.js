@@ -1,6 +1,6 @@
 import { StyledDivImage, StyledDiv } from './style'
 
-import RegisterOne from '../../../commons/RegisterForm/RegisterUser/RegisterOne/RegisterOne';
+import RegisterOne from '../../../components/commons/RegisterForm/RegisterCompany/RegisterOne';
 
 const Register = () => (
     <StyledDiv>
