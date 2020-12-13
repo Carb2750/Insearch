@@ -82,7 +82,8 @@ class WorkModel {
       const enterpriseData = {
         "id_empresa":id_empresa,
         "enterprise_name":enterpriseUser["name"],
-        "photo":enterpriseUser["photo"]
+        "photo":enterpriseUser["photo"],
+        "email":enterpriseUser["email"]
       }
       document["empresa"] = enterpriseData; 
       delete document["id_empresa"]

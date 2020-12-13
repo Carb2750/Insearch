@@ -2,6 +2,7 @@ import { Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import withLayout from './components/hoc/Layout/index';
+import PrivateRoute from './components/hoc/PrivateRoute/index';
 import LandingPage from './components/public/Langinpage/LandingPage';
 import JobsPage from './components/public/JobsPage/JobsPage';
 import Login from './components/public/LoginPage/Login';
@@ -39,9 +40,9 @@ const App = () => {
           <Route path="/pageCompanyOne" exact component={withLayout(RegisterCompany)}/>
           <Route path="/pageCompanyTwo" exact component={withLayout(RegisterCompanyTwo)}/>
           <Route path="/pageCompanyThree" exact component={withLayout(RegisterCompanyThree)}/>
-          <Route path="/postedjobs" exact component={withLayout(JobPostedPage)}/>
-          <Route path="/createrequest" exact component={withLayout(CreateRequest)}/>
-          <Route path="/favorites" exact component={withLayout(FavoritesPage)}/>
+          <PrivateRoute path="/postedjobs" exact component={withLayout(JobPostedPage)}/>
+          <PrivateRoute path="/createrequest" exact component={withLayout(CreateRequest)}/>
+          <PrivateRoute path="/favorites" exact component={withLayout(FavoritesPage)}/>
           <Route path="/logout" exact component={withLayout(Logout)}/>
         </Switch>
       </StateProvider>

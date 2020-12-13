@@ -98,14 +98,19 @@ export const StyledCard = styled.div`
     }
   }
 
-  .favIcon {
+  .favIcon, .delIcon {
     position: absolute;
-    right: 5%;
-    bottom: 5%;
+    right: 4%;
+    bottom: 4%;
     z-index: 10;
   }
 
   .favIcon svg:hover {
+    color: red;
+    cursor: pointer;
+  }
+
+  .delIcon svg {
     color: red;
     cursor: pointer;
   }

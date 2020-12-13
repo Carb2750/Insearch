@@ -1,27 +1,51 @@
+import { useState, useEffect } from 'react';
+
+import { privAxios } from '../../../utils/axios';
+
 import { StyledDiv, StyledCards } from './style';
 
 import Card from '../../commons/Card/index';
 
-const JobPostedPage = () => {
+const JobPostedPage = (props) => {
+
+    const [jobs, setJobs] = useState([]);
+
+    useEffect(() => {
+        getJobs();
+    }, []);
+
+    const getJobs = () => {
+        privAxios.get('http://localhost:3000/api/works/getAllByEnterprise/',
+        {
+            params: {
+                id: props.user._id
+            }
+        })
+        .then(postedJobs => setJobs(postedJobs.data))
+        .catch(e => console.log(e));
+    }
+
+    const deleteJob = (id) => {
+        privAxios.delete('http://localhost:3000/api/works/delete',
+        {
+            params: {
+                id: id,
+                rol: props.user.roles[0]
+            }
+        })
+        .then(_ => getJobs())
+        .catch(e => console.log(e));
+    }
+
     return (
         <StyledDiv>
             <h1>Trabajos Publicados</h1>
             <StyledCards>
-                <Card enterpriseName="Algo Corp." job="Programador" time="3 meses" pay="3000$">
-                Magna do ut in aute voluptate quis consectetur occaecat ut non. Fugiat qui sit sunt irure laboris aliquip irure eu nostrud. Enim deserunt do mollit proident occaecat irure aliqua veniam aute incididunt culpa excepteur adipisicing ut. Minim exercitation ut nisi fugiat sit consequat Lorem proident ex enim et. Officia dolor do eu ipsum mollit sunt mollit laboris exercitation voluptate. Dolore amet culpa eu aliquip et ipsum voluptate duis tempor excepteur quis dolore. Ullamco ullamco ad proident excepteur voluptate sit cupidatat ea adipisicing proident incididunt aliqua.
-                Magna do ut in aute voluptate quis consectetur occaecat ut non. Fugiat qui sit sunt irure laboris aliquip irure eu nostrud. Enim deserunt do mollit proident occaecat irure aliqua veniam aute incididunt culpa excepteur adipisicing ut. Minim exercitation ut nisi fugiat sit consequat Lorem proident ex enim et. Officia dolor do eu ipsum mollit sunt mollit laboris exercitation voluptate. Dolore amet culpa eu aliquip et ipsum voluptate duis tempor excepteur quis dolore. Ullamco ullamco ad proident excepteur voluptate sit cupidatat ea adipisicing proident incididunt aliqua.
-                Magna do ut in aute voluptate quis consectetur occaecat ut non. Fugiat qui sit sunt irure laboris aliquip irure eu nostrud. Enim deserunt do mollit proident occaecat irure aliqua veniam aute incididunt culpa excepteur adipisicing ut. Minim exercitation ut nisi fugiat sit consequat Lorem proident ex enim et. Officia dolor do eu ipsum mollit sunt mollit laboris exercitation voluptate. Dolore amet culpa eu aliquip et ipsum voluptate duis tempor excepteur quis dolore. Ullamco ullamco ad proident excepteur voluptate sit cupidatat ea adipisicing proident incididunt aliqua.
-                </Card>
-                <Card enterpriseName="Algo Corp." job="Programador" time="3 meses" pay="3000$">
-                Magna do ut in aute voluptate quis consectetur occaecat ut non. Fugiat qui sit sunt irure laboris aliquip irure eu nostrud. Enim deserunt do mollit proident occaecat irure aliqua veniam aute incididunt culpa excepteur adipisicing ut. Minim exercitation ut nisi fugiat sit consequat Lorem proident ex enim et. Officia dolor do eu ipsum mollit sunt mollit laboris exercitation voluptate. Dolore amet culpa eu aliquip et ipsum voluptate duis tempor excepteur quis dolore. Ullamco ullamco ad proident excepteur voluptate sit cupidatat ea adipisicing proident incididunt aliqua.
-                Magna do ut in aute voluptate quis consectetur occaecat ut non. Fugiat qui sit sunt irure laboris aliquip irure eu nostrud. Enim deserunt do mollit proident occaecat irure aliqua veniam aute incididunt culpa excepteur adipisicing ut. Minim exercitation ut nisi fugiat sit consequat Lorem proident ex enim et. Officia dolor do eu ipsum mollit sunt mollit laboris exercitation voluptate. Dolore amet culpa eu aliquip et ipsum voluptate duis tempor excepteur quis dolore. Ullamco ullamco ad proident excepteur voluptate sit cupidatat ea adipisicing proident incididunt aliqua.
-                </Card>
-                <Card enterpriseName="Algo Corp." job="Programador" time="3 meses" pay="3000$">
-                Magna do ut in aute voluptate quis consectetur occaecat ut non. Fugiat qui sit sunt irure laboris aliquip irure eu nostrud. Enim deserunt do mollit proident occaecat irure aliqua veniam aute incididunt culpa excepteur adipisicing ut. Minim exercitation ut nisi fugiat sit consequat Lorem proident ex enim et. Officia dolor do eu ipsum mollit sunt mollit laboris exercitation voluptate. Dolore amet culpa eu aliquip et ipsum voluptate duis tempor excepteur quis dolore. Ullamco ullamco ad proident excepteur voluptate sit cupidatat ea adipisicing proident incididunt aliqua.
-                </Card>
-                <Card enterpriseName="Algo Corp." job="Programador" time="3 meses" pay="3000$">
-                Magna do ut in aute voluptate quis consectetur occaecat ut non. Fugiat qui sit sunt irure laboris aliquip irure eu nostrud. Enim deserunt do mollit proident occaecat irure aliqua veniam aute incididunt culpa excepteur adipisicing ut. Minim exercitation ut nisi fugiat sit consequat Lorem proident ex enim et. Officia dolor do eu ipsum mollit sunt mollit laboris exercitation voluptate. Dolore amet culpa eu aliquip et ipsum voluptate duis tempor excepteur quis dolore. Ullamco ullamco ad proident excepteur voluptate sit cupidatat ea adipisicing proident incididunt aliqua.
-                </Card>
+                {jobs.map(postedJob => (
+                    <Card key={postedJob._id} enterpriseName={postedJob.empresa.enterprise_name} job={postedJob.puesto} time="3 meses" pay={postedJob.salario + '$'} jobTitle={postedJob.titulo} img={"http://localhost:3000/" + postedJob.empresa.photo} date={postedJob.fecha_publicacion} time={postedJob.duracion.tiempo + " " + postedJob.duracion.periodo} delIcon delJob={() => deleteJob(postedJob._id)}>
+                        {postedJob.descripcion}
+                    </Card>
+                ))}
             </StyledCards>
         </StyledDiv>    
     );

@@ -88,10 +88,10 @@ router.put("/update/:id", isAuth, async (req, res) => {
   }
 })
 
-router.delete("/delete/:id", isAuth, async (req, res) => {
+router.delete("/delete", isAuth, async (req, res) => {
   try{
-    let {id} = req.params;
-    const rol = req.body.rol;
+    let {id} = req.query;
+    const rol = req.query.rol;
     if(rol == "enterprise") {
       let rslt = await mdbWorkModel.removeById(id);
       res.status(200).json(rslt);
@@ -105,9 +105,9 @@ router.delete("/delete/:id", isAuth, async (req, res) => {
   }
 })
 
-router.get("/getAllByEnterprise/:id", isAuth, async (req, res) => {
+router.get("/getAllByEnterprise", isAuth, async (req, res) => {
   try {
-    let {id} = req.params;
+    let {id} = req.query;
     const rslt = await mdbWorkModel.getAllByEnterprise(id);
     res.status(200).json(rslt);
   } catch (e) {
