@@ -24,7 +24,7 @@ const CreateRequest = () => {
             ...form,
             [name]:value
         });
-        console.log(name +':'+value);
+        console.log(name +': '+value);
     }
     
     return(
