@@ -10,20 +10,24 @@ const CreateRequestForm = () => {
         <StyledCreateRequestForm>
             <p className="title">Crear Solicitud</p>
             <div className="center">
-                <Input label="Nombre" input inputSize={'78%'}/>
-                <Textarea label="Descripcion" textarea rows="10" cols="60" />
-                <Input label="Responsabilidades" input inputSize={'78%'}/>
-                <Input label="Requisitos" input inputSize={'78%'}/>
-                <Input label="Preferencias" input inputSize={'78%'}/>
-                <Select label="Tipo de Trabajo" select selectSize={'78%'}/>
+                <Input label="Nombre" name="" input inputSize={'78%'}/>
+                <Textarea label="Descripcion" name="" textarea rows="10" cols="60" />
+                <Input label="Responsabilidades" name="" input inputSize={'78%'}/>
+                <Input label="Requisitos" name="" input inputSize={'78%'}/>
+                <Input label="Preferencias" name="" input inputSize={'78%'}/>
+                <Select label="Puesto"  name="" select selectSize={'78%'}>
+                    <option value="1">Analista</option>
+                    <option value="2">Desarrollador Backend</option>
+                    <option value="3">Desarrollador Frontend</option>
+                </Select>
                 <p className="duration">Duracion</p>
                 <div className="inline">
-                    <Input type="number"  min="1" input inputSize={'39%'} />
+                    <Input type="number" name=""  min="1" input inputSize={'39%'} />
                     <Select select selectSize={'100%'}/>
                 </div>
-                <Input label="Salario" type="number" min="1" input inputSize={'78%'}/>
+                <Input label="Salario" name="" type="number" min="1" input inputSize={'78%'}/>
             </div>
-            <Button>Agregar</Button>
+            <Button onClick={props.buttonHandler}>Agregar</Button>
         </StyledCreateRequestForm>
     );
 };

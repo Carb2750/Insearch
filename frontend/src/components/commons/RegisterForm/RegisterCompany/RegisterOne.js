@@ -1,9 +1,9 @@
 import { StyledRegisterOne } from './style';
 import React, { useEffect, useState } from "react";
 
-import Input from '../../../Input/index';
-import Button from '../../../Button/index';
-import Select from '../../../Select/index';
+import Input from '../../Input/index';
+import Button from '../../Button/index';
+import Select from '../../Select/index';
 
 
 const ListPlaces = [
@@ -63,7 +63,7 @@ const RegisterOne = () => {
             <Input type="file" id="upload" onChange={onSelectFile} accept="image/png, .jpeg, .jpg, image/gif" input />
             <label for="upload" class="square">Seleccionar Imagen</label>
             {selectedFile &&  <img className="img" src={preview} />}
-            <Button link="/pageCompanyTwo">Siguiente</Button>
+            <Button link="/">Siguiente</Button>
         </StyledRegisterOne>
     );
 };
