@@ -2,12 +2,11 @@ import { StyledRegisterOne } from './style';
 import React, { useEffect, useState } from "react";
 
 
-import Input from '../../../Input/index';
-import Button from '../../../Button/index';
-import Select from '../../../Select/index';
+import Input from '../../Input/index';
+import Button from '../../Button/index';
+import Select from '../../Select/index';
 
 
-//forloop
 const ListDays = [
     { day: '1', value: 1 },
     { day: '2', value: 2 },
@@ -61,14 +60,7 @@ const ListYears = [
     { year : '1930', value : 1 }
 ];
 
-let days = [];
-for (let i=1;i<=31;i++){
-    days.push(i);
-}
-
-
-
-const RegisterOne = () => {
+const RegisterOne = (props) => {
 
     const [selectedFile, setSelectedFile] = useState()
     const [preview, setPreview] = useState()
@@ -98,37 +90,31 @@ const RegisterOne = () => {
         <StyledRegisterOne>
             <p className="title">Crear Usuario</p>
             <div>
-                <Input label="Correo Electronico:" input inputSize={'100%'}/>
-                <Input label="Contraseña:" type="password" input inputSize={'100%'}/>
-                <Input label="Confirmar Contraseña:" type="password" input inputSize={'100%'}/>
-                <Input label="Usuario:" input inputSize={'100%'} />
-                <Input label="Nombre:" input inputSize={'100%'} />
-                <Input label="Apellido:" input inputSize={'100%'} />
-                <Input label="Fecha Nacimiento" />
-                <div className="inline">
-                    <Select select selectSize={'90%'}>
-                        {ListDays.map(day => {
-                            return <option>{day.day}</option>
-                        })}
-                    </Select>
-                    <Select select selectSize={'90%'}>
-                        {ListMonths.map(month => {
-                                return <option>{month.month}</option>
-                            })}
-                    </Select>
-                    <Select select selectSize={'100%'} />
-                </div>
+                <Input label="Correo Electronico:" name="email" input inputSize={'100%'}/>
+                <Input label="Contraseña:" name="password" type="password" input inputSize={'100%'}/>
+                <Input label="Confirmar Contraseña:" name="password" type="password" input inputSize={'100%'}/>
+                <Input label="Usuario:" name="username" input inputSize={'100%'} />
+                <Input label="Nombre:" name="name" input inputSize={'100%'} />
+                <Input label="Apellido:" name="lastname" input inputSize={'100%'} />
+                <Input label="Carrera:" name="career" input inputSize={'100%'} />
+                <Select label="Experiencia" name="" select selectSize={'100%'}>
+                    <option value="1">Internship</option>
+                    <option value="2">Entry Level</option>
+                    <option value="3">Mid Level</option>
+                    <option value="4">Senior Level</option>
+                </Select>
+                <Input label="Fecha Nacimiento" name="birthdate" input type="date" inputSize={'56%'} />
                 <div className="custom-input-file">
                     <p className="titles">Agregar Foto</p>
-                    <Input type="file" id="upload" onChange={onSelectFile} accept="image/png, .jpeg, .jpg, image/gif" input />
-                    <label for="upload" class="square">Seleccionar Imagen</label>
+                    <Input name="photo" type="file" id="img" onChange={onSelectFile} accept="image/png, .jpeg, .jpg, image/gif" input />
+                    {/*<label for="img" class="square">Seleccionar Imagen</label>*/}
                     {selectedFile &&  <img className="img" src={preview} />}
                     <p className="titles">Agregar CV</p>
-                    <label for="pdf" class="square">Seleccionar Archivo PDF</label> 
-                    <Input type="file" id="pdf" accept="application/pdf" input />
+                    {/*<label for="pdf" class="square">Seleccionar Archivo PDF</label>*/}
+                    <Input name="" type="file" id="pdf" accept="application/pdf" input />
                 </div>
             </div>
-            <Button link="/pageCompanyTwo">Siguiente</Button>
+            <Button onClick={props.buttonHandler}>Registrar</Button>
         </StyledRegisterOne>
     );
 };

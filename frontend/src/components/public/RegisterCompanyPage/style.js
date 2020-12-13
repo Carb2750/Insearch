@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import RegisterPageImage from '../../../../assets/images/register-page.jpg';
+import RegisterPageImage from '../../../assets/images/register-page.jpg';
 
 export const StyledDiv = styled.div`
     position: relative;
