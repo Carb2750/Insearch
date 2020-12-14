@@ -121,6 +121,8 @@ export const StyledCard = styled.div`
   }
 
   & a {
+    min-width: 100%;
+    min-height: 90%;
     display: inline-block;
     padding: 1.5rem;
   }

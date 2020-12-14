@@ -28,12 +28,15 @@ const CreateRequestForm = (props) => {
                 </Select>
                 <p className="duration">Duracion</p>
                 <div className="inline">
-                    <Input name={props.names.duration} value={props.values.duration} onChange={props.onChange} type="number" name=""  min="1" input inputSize={'39%'} />
-                    <Select select selectSize={'100%'}/>
+                    <Input name={props.names.tiempo} value={props.values.tiempo} onChange={props.onChange} type="number"  min="1" input inputSize={'39%'} />
+                    <Select select selectSize={'100%'} name={props.names.periodo} onChange={props.onChange}>
+                        <option value={props.values.periodo.selectedIndex}>Mes</option>
+                        <option value={props.values.periodo.selectedIndex}>Años</option>
+                    </Select>
                 </div>
                 <Input label="Salario" name={props.names.salary} value={props.values.salary} onChange={props.onChange} type="number" min="1" input inputSize={'78%'}/>
             </div>
-            <Button onClick={props.buttonHandler}>Agregar</Button>
+            <Button onClick={props.sendHandler}>Agregar</Button>
         </StyledCreateRequestForm>
     );
 };
