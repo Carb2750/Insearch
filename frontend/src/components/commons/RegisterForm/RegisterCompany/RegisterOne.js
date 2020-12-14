@@ -60,9 +60,9 @@ const RegisterOne = (props) => {
                 <Input name={props.names.website} value={props.values.website} onChange={props.onChange} label="Sitio Web:" input inputSize={'100%'}/>
             </div>
             <p className="title">Agregar Foto</p>
-            <Input name={props.names.image} value={props.values.image} type="file" id="upload" onChange={props.onChange} accept="image/png, .jpeg, .jpg, image/gif" input />
-            <label for="upload" class="square">Seleccionar Imagen</label>
-            {selectedFile &&  <img className="img" src={preview} />}
+            <Input name={props.names.photo} type="file" id="upload" onChange={props.onChange} accept="image/png, .jpeg, .jpg, image/gif" input />
+            <label className="square">Seleccionar Imagen</label>
+            {/* {selectedFile &&  <img className="img" src={preview} />} */}
             <Button onClick={props.buttonHandler}>Registrar</Button>
         </StyledRegisterOne>
     );

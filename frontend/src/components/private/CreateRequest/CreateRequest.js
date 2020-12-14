@@ -46,7 +46,7 @@ const CreateRequest = (props) => {
         newForm.duracion = {
           ...newForm.duracion,
           tiempo: (name === "tiempo" ? value : newForm.duracion.tiempo),
-          periodo: (name === "periodo" ? value : newForm.duracion.tiempo)
+          periodo: (name === "periodo" ? value : newForm.duracion.periodo)
         };
       }
       else {
@@ -74,7 +74,7 @@ const CreateRequest = (props) => {
         title:'Trabajo Añadido',
         timer:1000
     });
-    routeHistory.replace(from)
+    routeHistory.replace(from);
     })
     .catch(e => {
       Swal.fire({
