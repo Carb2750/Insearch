@@ -29,20 +29,6 @@ router.get("/all", async (req, res) => {
   }
 });
 
-router.get("/filter", async (req, res) => {
-  try {
-    const currentPage  = req.query.page || 1;
-    const perPage = 5;
-    const puesto = req.query.puesto || "";
-    const experiencia = req.query.experiencia || "";
-    const result = await mdbWorkModel.getByFilter({currentPage, perPage, puesto, experiencia});
-    res.status(200).json(result);
-  } catch(e) {
-    console.log(e);
-    res.status(500).json({msg: "Algo salií mal"});
-  }
-})
-
 router.get('/getbyid/:id', async (req, res) => {
   try {
     const { id } = req.params;
@@ -163,12 +149,28 @@ router.get('/getfavs', isAuth, async(req, res) => {
   }
 })
 
-router.post('/addfav', isAuth, async(req, res) => {
+router.put('/addfav', isAuth, async(req, res) => {
   try {
     const rol = req.body.rol;
     if(rol == "user") {
       const document = req.body;
       const result = await mdbWorkModel.addToFav(document);
+      res.status(200).json({result});
+    }
+    else {
+      res.status(500).json({"error":"No está conectado a una cuenta de usuario"});
+    }
+  } catch(e) {
+    res.status(500).json({msg: "No se agregó", error:e});
+  }
+})
+
+router.put('/removefav', isAuth, async(req, res) => {
+  try {
+    const rol = req.body.rol;
+    if(rol == "user") {
+      const document = req.body;
+      const result = await mdbWorkModel.removeFav(document);
       res.status(200).json({result});
     }
     else {

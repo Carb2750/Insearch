@@ -20,5 +20,9 @@ export const StyledDiv = styled.div`
         position: absolute;
         margin-top: 2rem;
         right: 5%;
+
+        button:first-child {
+            margin-right: 0.5rem;
+        }
     }
 `;

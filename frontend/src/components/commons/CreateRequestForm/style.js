@@ -8,6 +8,10 @@ export const StyledCreateRequestForm = styled.div `
 
     margin: auto;
 
+    h1 {
+        font-size: 3rem;
+    }
+
     .title {
         text-align: center;
         width: 70%;
@@ -39,7 +43,10 @@ export const StyledCreateRequestForm = styled.div `
     }
 
     & button {
-        margin-top: 1rem;
-        margin-bottom: 3rem;
+        margin: 0 0 0.5rem 0;
+    }
+
+    & ul {
+        margin: 0.5rem;
     }
 `

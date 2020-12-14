@@ -31,16 +31,9 @@ router.post('/login', async(req, res)=>{
 
 router.post('/signupuser', async(req, res)=>{
   try{
-    if(!req.file) {
-      const error = new Error('No photo');
-      error.statusCode = 422;
-      throw error;
-    }
+    let { username, email, name, lastname, password, birthdate, career } = req.body;
 
-    let { username, email, name, lastname, password, birthdate, career, achievements} = req.body;
-
-    const photo = req.file.path;
-    let rslt = await SecMdl.addUser({username, email, name, lastname, password, birthdate, career, photo, achievements});
+    let rslt = await SecMdl.addUser({username, email, name, lastname, password, birthdate, career});
     res.status(200).json(rslt);
   }catch(ex){
     console.log(ex);
@@ -59,7 +52,7 @@ router.post('/signup', async(req, res)=>{
     let { email, password, name, description, location, website } = req.body;
 
     const photo = req.file.path;
-    let rslt = await SecMdl.addEnterpriseUser({email, password, email, password, name, photo, description, location, website});
+    let rslt = await SecMdl.addEnterpriseUser({email, password, name, photo, description, location, website});
     res.status(200).json(rslt);
   }catch(ex){
     console.log(ex);

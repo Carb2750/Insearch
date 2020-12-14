@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-export const StyledDiv = styled.div`
-  width: 100%;
-`;
-
 export const StyledP = styled.p`
   font-size: 1.4rem;
   margin-bottom: 1rem;

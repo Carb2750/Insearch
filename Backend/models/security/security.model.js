@@ -51,8 +51,6 @@ class SecurityModel {
         "password": bcrypt.hashSync(password, 10),
         "birthdate": birthdate,
         "career": career,
-        "photo": photo,
-        "achievements": achievements,
         "lastlogin": 0,
         "lastpwdchg": 0,
         "pwdexp": new Date().getTime() + (1000*60*60*24*90), /* mils, s , m, h, d */
@@ -152,6 +150,18 @@ class SecurityModel {
       id_work = new ObjectID(id_work);
   
       const addOps = {"$addToSet":{"favs":id_work}};
+      await this.collection.findOneAndUpdate({_id}, addOps, { returnOriginal:false });
+    } catch(e) {
+      throw(e);
+    }
+  }
+
+  async removeFav(id, id_work) {
+    try {
+      const _id = new ObjectID(id);
+      id_work = new ObjectID(id_work);
+  
+      const addOps = {"$pull":{"favs":id_work}};
       await this.collection.findOneAndUpdate({_id}, addOps, { returnOriginal:false });
     } catch(e) {
       throw(e);

@@ -5,7 +5,7 @@ export const StyledButton = styled.button`
   border-radius: ${props => props.theme.borderRadius};
   background-color: ${props => props.theme.bg};
   color: ${props => props.theme.fg};
-  font-size: 1.4rem;
+  font-size: ${props => props.theme.fontSize ? props.theme.fontSize : '1.4rem'};
   padding: 0.5rem 1rem 0.5rem 1rem;
 
   &:hover, &:active {
