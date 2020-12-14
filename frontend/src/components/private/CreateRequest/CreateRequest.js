@@ -46,7 +46,7 @@ const CreateRequest = (props) => {
         newForm.duracion = {
           ...newForm.duracion,
           tiempo: (name === "tiempo" ? value : newForm.duracion.tiempo),
-          periodo: (name === "periodo" ? value : newForm.duracion.tiempo)
+          periodo: (name === "periodo" ? value : newForm.duracion.periodo)
         };
       }
       else {
