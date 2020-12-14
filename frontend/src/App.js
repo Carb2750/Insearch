@@ -24,7 +24,6 @@ const App = () => {
     <div>
       <StateProvider initialState={appState} reducer={mainReducer}>
         <Switch>
-          <Route path="/404" exact component={withLayout(NotFoundPage)} />
           <Route path="/" exact component={withLayout(LandingPage)} />
           <Route path="/jobs" exact component={withLayout(JobsPage)} />
           <Route path="/jobs/:id" exact component={withLayout(JobPage)}/>
@@ -36,6 +35,7 @@ const App = () => {
           <PrivateRoute path="/createrequest" exact component={withLayout(CreateRequest)}/>
           <PrivateRoute path="/favorites" exact component={withLayout(FavoritesPage)}/>
           <Route path="/logout" exact component={withLayout(Logout)}/>
+          <Route path="*" exact component={withLayout(NotFoundPage)} />
         </Switch>
       </StateProvider>
     </div>

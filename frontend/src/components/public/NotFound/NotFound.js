@@ -2,11 +2,7 @@ import { StyledDivImage, StyledDiv } from './style';
 
 
 const NotFoundPage = () => (
-    <StyledDiv>
-        <StyledDivImage>
-            <p>Alv</p>
-        </StyledDivImage>
-    </StyledDiv>
+    <StyledDivImage />
 );
 
 export default NotFoundPage;
