@@ -53,7 +53,7 @@ const RegisterOne = () => {
                 <Input label="Confirmar Contraseña:" type="password" input inputSize={'100%'}/>
                 <Select label="País:" select selectSize={'100%'}>
                     {ListPlaces.map(place => {
-                            return <option>{place.place}</option>
+                            return <option key={place.place} value={place.place}>{place.place}</option>
                     })}
                 </Select>
                 <Input label="Descripción:" input inputSize={'100%'} />

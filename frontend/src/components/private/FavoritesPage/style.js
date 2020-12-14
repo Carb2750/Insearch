@@ -16,6 +16,6 @@ export const StyledCards = styled.div`
   flex-wrap: wrap;
   margin: 2rem auto;
   & > div {
-    margin-bottom: 1rem;
+    margin: 0rem 1rem 1rem 1rem;
   }
 `;
