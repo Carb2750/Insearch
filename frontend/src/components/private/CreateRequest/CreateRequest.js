@@ -74,7 +74,7 @@ const CreateRequest = (props) => {
         title:'Trabajo Añadido',
         timer:1000
     });
-    routeHistory.replace(from)
+    routeHistory.replace(from);
     })
     .catch(e => {
       Swal.fire({
