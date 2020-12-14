@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
+import NotFoundPage from './components/public/NotFound/NotFound';
 import withLayout from './components/hoc/Layout/index';
 import PrivateRoute from './components/hoc/PrivateRoute/index';
 import LandingPage from './components/public/Langinpage/LandingPage';
@@ -23,6 +24,7 @@ const App = () => {
     <div>
       <StateProvider initialState={appState} reducer={mainReducer}>
         <Switch>
+          <Route path="/404" exact component={withLayout(NotFoundPage)} />
           <Route path="/" exact component={withLayout(LandingPage)} />
           <Route path="/jobs" exact component={withLayout(JobsPage)} />
           <Route path="/jobs/:id" exact component={withLayout(JobPage)}/>
