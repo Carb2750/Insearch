@@ -76,7 +76,7 @@ export const StyledCard = styled.div`
       display: -webkit-box;
       -webkit-line-clamp: 5;
       -webkit-box-orient: vertical;
-      padding-right: 1.4rem;
+      padding: 0.5rem 1.4rem 0.5rem 0;
       text-overflow: ellipsis;
       overflow: hidden;
     }

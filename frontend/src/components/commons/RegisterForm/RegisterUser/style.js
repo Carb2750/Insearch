@@ -3,16 +3,14 @@ import styled from 'styled-components';
 export const StyledRegisterOne = styled.div `
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
 
     margin: auto;
+    padding-bottom: 2rem;
+    
     width: 45vw;
     height: 100%;
 
-    position: absolute;
-    top: 0rem;
-    right: 0rem;
 
     background-color: #ffffffff;
 
@@ -21,7 +19,7 @@ export const StyledRegisterOne = styled.div `
         width: 70%;
         font-size: 2rem;
         font-weight: bold;
-        margin-bottom: 2rem; 
+        margin: 2rem 0; 
     }
 
     .titles {
@@ -71,7 +69,7 @@ export const StyledRegisterOne = styled.div `
         width: 100%;
     }
 
-    & input {
+    & input, & select {
         margin-bottom: 3rem
     }
 

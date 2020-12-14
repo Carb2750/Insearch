@@ -4,11 +4,13 @@ import RegisterPageImage from '../../../assets/images/register-page.jpg';
 
 export const StyledDiv = styled.div`
     position: relative;
+    display: flex;
+    height: 100%;
 `
 
 export const StyledDivImage = styled.div`
     width: 55vw;
-    height: 190vh;
+    height: auto;
 
     background: url(${RegisterPageImage});
     background-repeat: no-repeat;

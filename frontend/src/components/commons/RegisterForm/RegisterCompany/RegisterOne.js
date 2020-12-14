@@ -53,7 +53,7 @@ const RegisterOne = (props) => {
                 <Input label="Confirmar Contraseña:" type="password" input inputSize={'100%'}/>
                 <Select name={props.names.location} onChange={props.onChange} label="País:" select selectSize={'100%'}>
                     {ListPlaces.map(place => {
-                            return <option value={props.values.location}>{place.place}</option>
+                            return <option key={place.place} value={place.place}>{place.place}</option>
                     })}
                 </Select>
                 <Input name={props.names.description} value={props.values.description} onChange={props.onChange} label="Descripción:" input inputSize={'100%'} />

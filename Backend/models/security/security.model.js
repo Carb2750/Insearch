@@ -51,8 +51,6 @@ class SecurityModel {
         "password": bcrypt.hashSync(password, 10),
         "birthdate": birthdate,
         "career": career,
-        "photo": photo,
-        "achievements": achievements,
         "lastlogin": 0,
         "lastpwdchg": 0,
         "pwdexp": new Date().getTime() + (1000*60*60*24*90), /* mils, s , m, h, d */

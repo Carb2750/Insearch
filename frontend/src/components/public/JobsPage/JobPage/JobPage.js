@@ -78,20 +78,20 @@ const JobPage = (props) => {
                     <div className="metadata">
                         <h2>Responsabilidades:</h2>
                         <ul>
-                            {currentJob["responsabilidades"].map((responsabilidad) => (
-                            <li>{responsabilidad}</li>
+                            {currentJob["responsabilidades"].map((responsabilidad, index) => (
+                            <li key={currentJob["responsabilidades"] + index}>{responsabilidad}</li>
                             ))}
                         </ul>
                         <h2>Requisitos:</h2>
                         <ul>
-                            {currentJob["requisitos"].map((requisito) => (
-                            <li>{requisito}</li>
+                            {currentJob["requisitos"].map((requisito, index) => (
+                            <li key={currentJob["requisitos"] + index}>{requisito}</li>
                             ))}
                         </ul>
                         <h2>Preferencias:</h2>
                         <ul>
-                            {currentJob["preferencias"].map((preferencia) => (
-                            <li>{preferencia}</li>
+                            {currentJob["preferencias"].map((preferencia, index) => (
+                            <li key={currentJob["preferencias"] + index}>{preferencia}</li>
                             ))}
                         </ul>
                     </div>

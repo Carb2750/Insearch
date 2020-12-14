@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import { useHistory, useLocation, Redirect } from 'react-router-dom';
+
 import axios from 'axios';
 
 import { StyledDiv, StyledCards } from './style';
@@ -21,7 +23,11 @@ const JobsPage = (props) => {
     });
     const [query, setQuery] = useState("");
 
+    const routeHistory = useHistory();
+    const location = useLocation();
+    
     useEffect(() => {
+      console.log(props.user);
       getPosts(page);
     }, []);
 
@@ -88,7 +94,7 @@ const JobsPage = (props) => {
     }
 
     const addFavorite = (idWork) => {
-      if(props.user !== {}) {
+      if(Object.keys(props.user).length !== 0) {
         let newJobs = jobs.jobs.slice();
         const job = newJobs.filter(job => job._id === idWork)[0];
         if(!job.favs.find(fav => fav === props.user._id)) {
@@ -101,6 +107,9 @@ const JobsPage = (props) => {
           }).then(() => dispatch({type:JOB_ADD_FAV, payload:{workIndex:workIndex, id:props.user._id}}))
           .catch(e => console.log(e));
         }
+      }
+      else {
+        routeHistory.replace({pathname:'/login', state: { from: location }})
       }
     }
 

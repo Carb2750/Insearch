@@ -6,7 +6,7 @@ import Input from '../Input/index';
 const sidebar = (props) => {
 
     const experienceControls = [
-        {label:"Internship", type:"internship"},
+        {label:"Internship", type:"Internship"},
         {label:"Entry Level", type:"Entry Level"},
         {label:"Mid Level", type:"Mid Level"},
         {label:"Senior Level", type:"Senior Level"}
@@ -32,11 +32,6 @@ const sidebar = (props) => {
                         </Button>
                     );
                })}
-            </div>
-            <h2>Fecha Publicación</h2>
-            <div className="buttonGroup">
-                <Button theme='secondary'>Más recientes</Button>
-                <Button theme='secondary'>Más relevantes</Button>
             </div>
             <div className="applyChanges">
                 <Button onClick={props.clearHandler}>Borrar Filtros</Button>

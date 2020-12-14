@@ -1,5 +1,9 @@
 import { useState } from "react";
+import { useHistory, useLocation } from 'react-router-dom';
+
 import { StyledDiv } from "./style";
+
+import Swal from 'sweetalert2';
 
 import CreateRequestForm from "../../commons/CreateRequestForm/CreateRequestForm";
 
@@ -12,32 +16,49 @@ const CreateRequest = (props) => {
     responsabilidades: [],
     requisitos: [],
     preferencias: [],
-    puesto: "",
-    experiencia: "",
+    puesto: "Analista",
+    experiencia: "Internship",
     duracion: {
       tiempo: "",
-      periodo: "",
+      periodo: "Meses",
     },
     salario: "",
     favs: []
   });
 
+  const [arrData, setArrData] = useState({
+    responsabilidades:'',
+    requisitos:'',
+    preferencias:''
+  });
+
+  const routeHistory = useHistory();
+  const location = useLocation();
+  
+  let { from } = location.state || { from:{ pathname:"/postedjobs" } };
+
   const formHandler = (e) => {
     const { name, value } = e.target;
-
-    const newForm = {...form};
-
-    if (name === "tiempo" || name === "periodo") {
-      newForm.duracion = {
-        ...newForm.duracion,
-        tiempo: (name === "tiempo" ? value : newForm.duracion.tiempo),
-        periodo: (name === "periodo" ? value : newForm.duracion.tiempo)
-      };
+    if(name !== "responsabilidades" && name !== "requisitos"  && name !== "preferencias") {
+      const newForm = {...form};
+  
+      if (name === "tiempo" || name === "periodo") {
+        newForm.duracion = {
+          ...newForm.duracion,
+          tiempo: (name === "tiempo" ? value : newForm.duracion.tiempo),
+          periodo: (name === "periodo" ? value : newForm.duracion.tiempo)
+        };
+      }
+      else {
+          newForm[name] = value;
+      }
+      setForm(newForm);
     }
     else {
-        newForm[name] = value;
+      const newForm = {...arrData};
+      newForm[name] = value;
+      setArrData(newForm);
     }
-    setForm(newForm);
   };
 
   const addJobHandler = () => {
@@ -47,8 +68,29 @@ const CreateRequest = (props) => {
         ...form,
       'id_empresa':props.user._id,
       'rol':props.user.roles[0]
-    }).then(data => console.log(data))
-      .catch(e => console.log(e));
+    }).then(data => {
+      Swal.fire({
+        icon:'success',
+        title:'Trabajo Añadido',
+        timer:1000
+    });
+    routeHistory.replace(from)
+    })
+    .catch(e => {
+      Swal.fire({
+        icon:'error',
+        title:'Trabajo No Añadido',
+        timer:1000
+      });
+    });
+  }
+
+  const add = (name) => {
+    const newArr = {...form};
+    const newValues = {...arrData};
+
+    newArr[name].push(newValues[name]);
+    setForm(newArr);
   }
 
   return (
@@ -57,9 +99,9 @@ const CreateRequest = (props) => {
         names={{
           title: "titulo",
           description: "descripcion",
-          responsability: "responsabilidades",
-          requirements: "requisitos",
-          preferences: "preferencias",
+          responsabilidades: "responsabilidades",
+          requisitos: "requisitos",
+          preferencias: "preferencias",
           position: "puesto",
           experience: "experiencia",
           tiempo: "tiempo",
@@ -69,9 +111,9 @@ const CreateRequest = (props) => {
         values={{
           title: form.titulo,
           description: form.descripcion,
-          responsability: form.responsabilidades,
-          requirements: form.requisitos,
-          preferences: form.preferencias,
+          responsabilidades: arrData.responsabilidades,
+          requisitos: arrData.requisitos,
+          preferencias: arrData.preferencias,
           position: form.puesto,
           experience: form.experiencia,
           tiempo: form.duracion.tiempo,
@@ -80,6 +122,10 @@ const CreateRequest = (props) => {
         }}
         onChange={formHandler}
         sendHandler={addJobHandler}
+        add={add}
+        responsabilidades={form.responsabilidades}
+        requisitos={form.requisitos}
+        preferencias={form.preferencias}
       />
     </StyledDiv>
   );
