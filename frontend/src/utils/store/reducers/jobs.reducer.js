@@ -31,7 +31,8 @@ const jobsReducer = (state = initialState, action = {}) => {
         case JOBS_LOADED:
             return {
                 ...state,
-                jobs: [...action.payload],
+                total: action.payload.totalItems,
+                jobs: [...action.payload.jobs],
                 fetching: false
             };
 

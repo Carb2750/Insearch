@@ -1,3 +1,4 @@
+const { compareSync } = require("bcrypt");
 const { use } = require("passport");
 const MongoDB = require("../db");
 var ObjectID = require('mongodb').ObjectID;
@@ -21,42 +22,12 @@ class WorkModel {
 
   async getAll(document) {
     try {
-      let totalItems;
-      this.collection.countDocuments().then(
-        count => {
-          totalItems = count;
-      }
-      ).catch(e => {
-        console.log(e);
-      }) 
       const query = {};
       (document.puesto !== "") ? (query.puesto = document.puesto) : "";
       (document.experiencia !== "") ? (query.experiencia = document.experiencia) : "";
+      const totalItems = await this.collection.find(query).count();
       const result = await this.collection.find(query).sort({$natural:-1}).skip((document.currentPage - 1) * document.perPage).limit(document.perPage).toArray();
-      result["totalItems"] = totalItems;
-      return result;
-    } catch(e) {
-      console.log(e);
-      throw(e)
-    }
-  }
-
-  async getByFilter(document) {
-    try {
-      let totalItems;
-      this.collection.countDocuments().then(
-        count => {
-          totalItems = count;
-      }
-      ).catch(e => {
-        console.log(e);
-      }) 
-      const query = {};
-      (document.puesto !== "") ? (query.puesto = document.puesto) : "";
-      (document.experiencia !== "") ? (query.experiencia = document.experiencia) : "";
-      const result = await this.collection.find(query).sort({$natural:-1}).skip((document.currentPage - 1) * document.perPage).limit(document.perPage).toArray();
-      result["totalItems"] = totalItems;
-      return result;
+      return {jobs:[...result], totalItems:totalItems};
     } catch(e) {
       console.log(e);
       throw(e)
@@ -147,6 +118,21 @@ class WorkModel {
       await this.collection.findOneAndUpdate({"_id":id_work}, addOps, { returnOriginal:false });
       return {"msg":"Agregado a favoritos"};
     }catch(e){
+      throw(e);
+    }
+  }
+
+  async removeFav(document) {
+    try {
+      const id_user = new ObjectID(document["id_user"]);
+      const id_work = new ObjectID(document["id_work"]);
+
+      const removeOps = {'$pull': { 'favs':id_user }}
+
+      await users.removeFav(id_user, id_work);
+      await this.collection.findOneAndUpdate({"_id":id_work}, removeOps, { returnOriginal:false });
+      return {"msg":"Eliminado de favoritos"};
+    } catch(e) {
       throw(e);
     }
   }

@@ -5,15 +5,18 @@ import Header from '../../commons/Header/index';
 import { LOGIN_FETCH } from '../../../utils/store/reducers/auth.reducer';
 import { useStateContext } from '../../../utils/context';
 
+import { setJWT } from '../../../utils/axios';
+
 const withLayout = (WrappedComponent) => props => {
 
     const [{auth}, dispatch] = useStateContext();
 
     useEffect(() => {
+        setJWT(auth.jwt);
         if(auth.logged === false) {
             dispatch(LOGIN_FETCH);
         }
-    }, [auth.logged]);
+    }, []);
 
     // console.log("PROP: ", props.children);
     return (

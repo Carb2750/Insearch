@@ -13,3 +13,19 @@ export const secondaryTheme = {
   borderHover: "3px solid #61BB6A",
   borderRadius: "0px"
 };
+
+export const paginationTheme = {
+  bg: "#ffffff00",
+  fg: "#000000",
+  border: "3px solid #61BB6A",
+  borderRadius: "0px",
+  fontSize: '1rem'
+};
+
+export const paginationUnTheme = {
+  bg: "#ffffff00",
+  fg: "#000000",
+  border: "3px solid #aaaaaa",
+  borderRadius: "0px",
+  fontSize: '1rem'
+}

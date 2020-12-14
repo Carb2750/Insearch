@@ -5,6 +5,7 @@ import { StyledDiv, StyledCards } from './style';
 
 import Card from '../../commons/Card/index';
 import Sidebar from '../../commons/SideBar';
+import Pagination from '../../commons/Pagination/index';
 
 import { useStateContext } from '../../../utils/context';
 import { JOBS_LOADED, JOBS_ERROR, JOB_REMOVE_FAV, JOB_ADD_FAV } from '../../../utils/store/reducers/jobs.reducer';
@@ -92,7 +93,7 @@ const JobsPage = (props) => {
         const job = newJobs.filter(job => job._id === idWork)[0];
         if(!job.favs.find(fav => fav === props.user._id)) {
           const workIndex = newJobs.findIndex(job => job._id === idWork);
-          privAxios.post('http://localhost:3000/api/works/addfav/',
+          privAxios.put('http://localhost:3000/api/works/addfav/',
           {
             'id_user': props.user._id,
             'rol':props.user.roles[0],
@@ -109,13 +110,27 @@ const JobsPage = (props) => {
       if(job.favs.find(fav => fav === props.user._id)) {
         const favIndex = job.favs.indexOf(props.user._id);
         const workIndex = newJobs.findIndex(job => job._id === idWork);
-        dispatch({type:JOB_REMOVE_FAV, payload:{favIndex:favIndex, workIndex:workIndex}});
+        privAxios.put('http://localhost:3000/api/works/removefav/', 
+        {
+          'id_user':props.user._id,
+          'rol':props.user.roles[0],
+          'id_work':idWork
+        }).then(() => dispatch({type:JOB_REMOVE_FAV, payload:{favIndex:favIndex, workIndex:workIndex}}))
+        .catch(e => console.log(e));
       }
+    }
+
+    const clearHandler = () => {
+      setFilters({
+        "puesto":"",
+        "experiencia":""
+      });
+      getPosts();
     }
 
     return (
       <StyledDiv>
-          <Sidebar searchHandler={() => searchHandler(filters)} onChangeHandler={(e) => puestoInputHandler(e)} experienceHandler={experienceHandler} experience={filters.experiencia} />
+          <Sidebar value={filters.puesto} clearHandler={clearHandler} searchHandler={() => searchHandler(filters)} onChangeHandler={(e) => puestoInputHandler(e)} experienceHandler={experienceHandler} experience={filters.experiencia} />
           <StyledCards>
               {jobs.jobs.map(data => {
                 if(props.user) {
@@ -131,11 +146,7 @@ const JobsPage = (props) => {
                   </Card> 
                 )
               })}
-              <div>
-                <p>Page: {page}</p>
-                <button onClick={() => changePageHandler('previous')}>Anterior</button>
-                <button onClick={() => changePageHandler('next')}>Siguiente</button>
-              </div>
+              <Pagination page={page} lastPage={jobs.total} pageLimit={jobs.pageLimit} changePageHandler={changePageHandler} />
           </StyledCards>
       </StyledDiv>
     );
