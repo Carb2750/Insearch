@@ -4,7 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import NotFoundPage from './components/public/NotFound/NotFound';
 import withLayout from './components/hoc/Layout/index';
 import PrivateRoute from './components/hoc/PrivateRoute/index';
-import LandingPage from './components/public/Langinpage/LandingPage';
+import LandingPage from './components/public/Landingpage/LandingPage';
 import JobsPage from './components/public/JobsPage/JobsPage';
 import Login from './components/public/LoginPage/Login';
 import RegisterUser from './components/public/RegisterUserPage/PageOne';
