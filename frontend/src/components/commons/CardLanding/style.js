@@ -17,14 +17,14 @@ export const StyledCardLanding = styled.div`
 .container .box{
     position: relative;
     width: calc(400px - 30px);
-    height: calc(300px - 30px);
-    background: #D3D3D3;
+    height: calc(380px - 30px);
+    background: white;
     float: left;
     margin: 1rem 1rem;
     box-sizing: border-box;
     overflow: hidden;
     border-radius:10px;
-    box-shadow: 0px 0px 5px 1px black;
+    box-shadow: 0 0 5px 1px black;
 
 }
 
@@ -34,7 +34,8 @@ export const StyledCardLanding = styled.div`
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    font-size: 100px;
+    font-size: 6rem;
+    color: black;
 }
 
 .title {
@@ -45,6 +46,8 @@ export const StyledCardLanding = styled.div`
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 2rem; 
+    color: #1D8027;
 }
+
 `
 
