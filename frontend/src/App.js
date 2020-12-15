@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
+import NotFoundPage from './components/public/NotFound/NotFound';
 import withLayout from './components/hoc/Layout/index';
 import PrivateRoute from './components/hoc/PrivateRoute/index';
 import LandingPage from './components/public/Langinpage/LandingPage';
@@ -34,6 +35,7 @@ const App = () => {
           <PrivateRoute path="/createrequest" exact component={withLayout(CreateRequest)}/>
           <PrivateRoute path="/favorites" exact component={withLayout(FavoritesPage)}/>
           <Route path="/logout" exact component={withLayout(Logout)}/>
+          <Route path="*" exact component={withLayout(NotFoundPage)} />
         </Switch>
       </StateProvider>
     </div>
