@@ -4,6 +4,8 @@ import LandingPageImage from '../../../assets/images/landing-page.jpg';
 
 export const StyledDiv = styled.div`
     position: relative;
+
+   
 `
 
 export const StyledDivImage = styled.div`
@@ -20,4 +22,12 @@ export const StyledOverlayColor = styled.div`
     min-height: 100vh;
 
     background-color: #00000066;
+`
+
+export const StyledContainer = styled.div`
+    position: relative;
+    border:1px solid black;
+    margin:20px;
+
+
 `
