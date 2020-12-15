@@ -1,6 +1,7 @@
 import { Fragment, useEffect } from 'react';
 
 import Header from '../../commons/Header/index'; 
+import Footer from '../../commons/Footer/index';
 
 import { LOGIN_FETCH } from '../../../utils/store/reducers/auth.reducer';
 import { useStateContext } from '../../../utils/context';
@@ -23,6 +24,7 @@ const withLayout = (WrappedComponent) => props => {
         <Fragment>
             <Header isAuth={auth.logged} rol={(auth.user.roles) ? auth.user.roles[0] : null} />
             <WrappedComponent {...props} user={auth.user} />
+            <Footer />
         </Fragment>
     );
 };

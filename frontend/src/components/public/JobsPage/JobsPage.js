@@ -34,8 +34,11 @@ const JobsPage = (props) => {
           ...filters,
           puesto:params.get("puesto")
         });
+        getPosts(page,"puesto="+encodeURIComponent(params.get("puesto")));
       }
-      getPosts(page,"puesto="+encodeURIComponent(params.get("puesto")));
+      else {
+        getPosts(page);
+      }
     }, []);
 
     const getPosts = (page, query="") => {

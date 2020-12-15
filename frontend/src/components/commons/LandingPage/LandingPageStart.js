@@ -13,7 +13,7 @@ const LadingPageStart = (props) => {
     const [findText,setFindText]= useState("");
 
     const routeHistory = useHistory();
-        const location = useLocation();
+    const location = useLocation();
     
     const SearchHandler = (e) => {
         const newValue = e.target.value;
@@ -25,14 +25,10 @@ const LadingPageStart = (props) => {
     } 
 
     return (
-        <div>
-            <StyledLandingPage>
-            <div className="inline" >
-                <Input placeholder="Buscar Trabajo" input inputSize={'100%'} onChange={(e)=> SearchHandler(e)} />
-                <Button onClick={SearchButton}>Buscar</Button>
-            </div>
-            </StyledLandingPage>
-        </div>
+        <StyledLandingPage>
+            <Input placeholder="Buscar Trabajo" input inputSize={'100%'} onChange={(e)=> SearchHandler(e)} />
+            <Button onClick={SearchButton}>Buscar</Button>
+        </StyledLandingPage>
     );
 }
 
