@@ -28,7 +28,14 @@ const JobsPage = (props) => {
     
     useEffect(() => {
       console.log(props.user);
-      getPosts(page);
+      const params = new URLSearchParams(props.location.search);
+      if(params.get("puesto")){
+        setFilters({
+          ...filters,
+          puesto:params.get("puesto")
+        });
+      }
+      getPosts(page,"puesto="+encodeURIComponent(params.get("puesto")));
     }, []);
 
     const getPosts = (page, query="") => {
