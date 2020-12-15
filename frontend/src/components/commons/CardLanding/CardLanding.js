@@ -17,7 +17,7 @@ const Cardlanding = (props) => (
                     </span>
                     
                     <h3 text align="center">Desarrollador</h3>
-                    <p text align="center">involucrados en todo el proceso relacionado a la creación y diseño de nuevos sistemas.</p>
+                    <p text align="center">Involucrados en todo el proceso relacionado a la creación y diseño de nuevos sistemas.</p>
                     
                 </div>
             </div>
@@ -31,7 +31,7 @@ const Cardlanding = (props) => (
                         
                     </span>
                     <h3 text align="center">Diseño Grafico</h3>
-                    <p text align="center">comunicar un mensaje de forma visual. resuelve desafíos muy concretos a nivel de comunicación y consecución de objetivos marcados.</p>
+                    <p text align="center">Comunicar un mensaje de forma visual. resuelve desafíos muy concretos a nivel de comunicación y consecución de objetivos marcados.</p>
                 </div>
             </div>      
             <div class="container" >
@@ -44,7 +44,7 @@ const Cardlanding = (props) => (
                     </span>
                     
                     <h3 text align="center">Fotografias</h3>
-                    <p text align="center">captar imágenes de personas, eventos, escenas, materiales, productos, entre otros elementos.</p>
+                    <p text align="center">Captar imágenes de personas, eventos, escenas, materiales, productos, entre otros elementos.</p>
                     
                 </div>
             </div>          

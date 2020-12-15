@@ -82,7 +82,7 @@ export const StyledCard = styled.div`
     }
 
     & .generalInfo {
-      min-width: 15%;
+      min-width: 20%;
       margin-left: auto;
       margin-bottom: 2%;
       & span {
@@ -93,7 +93,7 @@ export const StyledCard = styled.div`
         font-weight: bold;
         margin-left: 0.2rem;
         margin-bottom: 0.5rem;
-        white-space: nowrap;
+        /* white-space: nowrap; */
       }
     }
   }
