@@ -24,6 +24,7 @@ class WorkModel {
     try {
       const query = {};
       (document.puesto !== "") ? (query.puesto = {'$regex':RegExp(document.puesto), $options: '-i' }) : "";
+      console.log(query);
       (document.experiencia !== "") ? (query.experiencia = document.experiencia) : "";
       const totalItems = await this.collection.find(query).count();
       const result = await this.collection.find(query).sort({$natural:-1}).skip((document.currentPage - 1) * document.perPage).limit(document.perPage).toArray();
