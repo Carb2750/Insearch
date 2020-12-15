@@ -1,5 +1,6 @@
-import { StyledDivImage, StyledOverlayColor, StyledDiv } from './style';
+import { StyledDivImage, StyledOverlayColor, StyledDiv, StyledContainer } from './style';
 
+import Cardlanding from '../../commons/CardLanding/CardLanding';
 import LandingPageStart from '../../commons/LandingPage/LandingPageStart';
 
 const landingPage = () => (
@@ -7,8 +8,11 @@ const landingPage = () => (
         <StyledOverlayColor />
         <StyledDivImage />
         <LandingPageStart />
+        <Cardlanding/>
         
     </StyledDiv>
+    
+    
 );
 
 export default landingPage;
